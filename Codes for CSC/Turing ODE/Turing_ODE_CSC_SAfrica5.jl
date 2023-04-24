@@ -1,17 +1,12 @@
 using Statistics
 using CSV, DataFrames
 using Interpolations,LinearAlgebra
-using Optim
 using SpecialFunctions, StatsBase, Random, DifferentialEquations, Turing
 
 # Dataset
 dataset_CC = CSV.read("time_series_covid19_confirmed_global.csv", DataFrame) # all data of confirmed
 Confirmed=dataset_CC[dataset_CC[!,2].=="South Africa",70:250] #comulative confirmed data of Portugal from 3/2/20 to 5/17/20
 C=diff(Float64.(Vector(Confirmed[1,:])))# Daily new confirmed cases
-
-dataset_D = CSV.read("time_series_covid19_deaths_global.csv", DataFrame) # all data of Death
-DeathData=dataset_D[dataset_D[!,2].=="South Africa",70:250]
-TrueD=diff(Float64.(Vector(DeathData[1,:])))
 
 dataset_R = CSV.read("time_series_covid19_recovered_global.csv", DataFrame) # all data of Recover
 RData=dataset_R[dataset_R[!,2].=="South Africa",70:250]
@@ -59,7 +54,7 @@ function  F(dx, x, par, t)
     dx[4]= δ*ω*E - (μ + σ)*IS - γS*IS
     dx[5]=γS*IS + γA*IA - μ*R
     dx[6]=ηA*IA + ηS*IS - μp*P
-    dx[7]=σ*(IA+IS) - D
+    dx[7]=σ*(IA+IS) 
     dx[8]=Λ - σ*(IA+IS) - μ*N
     return nothing
 

@@ -67,7 +67,7 @@ prob = ODEProblem(F, X0, tSpan, par)
 
 
 # Open the file
-AA=readlines("Res22huhti.txt")
+AA=readlines("Output_CSC/Res22huhti.txt")
 
 BB=map(x -> parse.(Float64, split(x)), AA)
 
@@ -89,12 +89,7 @@ for i in 1:20000
 
 end
 
-# sizBB=zeros(7000)
-# for i=1:7000
-# 	sizBB[i]=length(BB[i])
-# end
-#
-# valBB,indBB=findmin(sizBB)
+
 
 valErr,indErr=findmin(Err)
 
@@ -126,5 +121,58 @@ using Plots
 plot(Pred[:,1])
 scatter!(C)
 
+plot!(Pred[:,2])
+scatter!(TrueR)
+
+
+##
+plot(; legend=false)
+for ii in 1:length(BB)-1
+	μ ,Λ,μp,ϕ2,δ,ψ,ω,σ2,γS,γA,ηA = BB[ii][2:12]
+	p1= [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA]
+	S0=BB[ii][1]
+	IA0=BB[ii][13]
+	P0=BB[ii][14]
+	N0=S0+E0+IA0+IS0+R0
+	X0=[S0,E0,IA0,IS0,R0,P0,D0,N0]
+	S0=pp[1]
+	IA0=pp[13]
+	P0=pp[14]
+	N0=S0+E0+IA0+IS0+R0
+	X0=[S0,E0,IA0,IS0,R0,P0,D0,N0]
+
+	prob = remake(prob; p = p1, u0 = X0)
+	sol = solve(prob, alg_hints=[:stiff]; saveat=1)
+	Pred1=reduce(vcat,sol.u')[:,4]
+    plot!(Pred1; alpha=0.1, color="#BBBBBB")
+end
+
+# Plot real and best
+plot!(Pred[:,1])
+scatter!(C)
+
+##
+plot(; legend=false)
+for ii in 1:length(BB)-1
+	μ ,Λ,μp,ϕ2,δ,ψ,ω,σ2,γS,γA,ηA = BB[ii][2:12]
+	p1= [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA]
+	S0=BB[ii][1]
+	IA0=BB[ii][13]
+	P0=BB[ii][14]
+	N0=S0+E0+IA0+IS0+R0
+	X0=[S0,E0,IA0,IS0,R0,P0,D0,N0]
+	S0=pp[1]
+	IA0=pp[13]
+	P0=pp[14]
+	N0=S0+E0+IA0+IS0+R0
+	X0=[S0,E0,IA0,IS0,R0,P0,D0,N0]
+
+	prob = remake(prob; p = p1, u0 = X0)
+	sol = solve(prob, alg_hints=[:stiff]; saveat=1)
+	Pred1=reduce(vcat,sol.u')[:,5]
+    plot!(Pred1; alpha=0.1, color="#BBBBBB")
+end
+
+# Plot real and best
 plot!(Pred[:,2])
 scatter!(TrueR)

@@ -37,11 +37,6 @@ x0=[S0,E0,IA0,IS0,R0,P0,D0,N0] # initial conditons S0,E0,IA0,IS0,R0,P0,D0,N0
 ηS=0.002 #rate of virus spread to environment by IS
 ηA=0.002 #rate of virus spread to environment by IA
 
-ϕ1=1e-5
-ηS=1e-5
-β1=1e-5
-β2=1e-5
-
 par=[Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA]
 
 tSpan=(1,length(C))
@@ -68,26 +63,28 @@ end
 prob = ODEProblem(F, x0, tSpan, par)
 
 #optimization
+ϵ=1e-5
 
 @model function fitprob(data,prob)
     # Prior distributions.
+
     σ ~ InverseGamma(2, 3)
 	S0 ~ truncated(Normal(5000,1500000); lower=5000, upper=2000000)
-	μ ~ truncated(Normal(0, 1); lower=0, upper=1)
+	μ ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
     Λ ~ truncated(Normal(1, 300); lower=1, upper=300)
-	μp ~ truncated(Normal(0, 1); lower=1e-4, upper=1)
-	# ϕ1 ~ truncated(Normal(0, 1); lower=1e-4, upper=1)
-	ϕ2 ~ truncated(Normal(0, 1); lower=1e-4, upper=1)
-	# β1 ~ truncated(Normal(0, 1); lower=1e-4, upper=1)
-	# β2 ~ truncated(Normal(0, 1); lower=1e-4, upper=1)
-	δ ~ truncated(Normal(0, 1); lower=1e-4, upper=1)
-	ψ ~ truncated(Normal(0, 1); lower=1e-4, upper=1)
-	ω ~ truncated(Normal(0, 1); lower=1e-4, upper=1)
-	σ2 ~ truncated(Normal(0, 1); lower=1e-4, upper=1)
-	γS ~ truncated(Normal(0, 1); lower=1e-4, upper=1)
-	γA ~ truncated(Normal(0, 1); lower=1e-4, upper=1)
-	# ηS ~ truncated(Normal(0, 1); lower=1e-4, upper=1)
-	ηA ~ truncated(Normal(0, 1); lower=1e-4, upper=1)
+	μp ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
+	ϕ1 ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
+	ϕ2 ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
+	β1 ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
+	β2 ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
+	δ ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
+	ψ ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
+	ω ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
+	σ2 ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
+	γS ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
+	γA ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
+	ηS ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
+	ηA ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
 	IA0 ~ truncated(Normal(0,300); lower=0, upper=300)
 	P0 ~ truncated(Normal(0,300); lower=0, upper=300)
 
@@ -99,6 +96,7 @@ prob = ODEProblem(F, x0, tSpan, par)
     x = solve(prob,alg_hints=[:stiff]; saveat=1)
 	II=x[4,:]
 	RR=x[5,:]
+
 	pred=[II RR]
     # Observations.
     for i in 1:length(pred[1,:])
@@ -111,14 +109,13 @@ end
 model = fitprob([C TrueR],prob)
 
 # Sample 3 independent chains with forward-mode automatic differentiation (the default).
-Nch=2
-chain = sample(model, NUTS(0.65), MCMCSerial(), Nch, 2; progress=false)
+Nch=4000
+chain = sample(model, NUTS(0.65), MCMCSerial(), Nch, 3; progress=false)
 
 
 display(chain)
 ##
-
-posterior_samples = sample(chain[[:S0, :μ ,:Λ,:μp,:ϕ2,:δ,:ψ,:ω,:σ2,:γS,:γA,:ηA, :IA0, :P0]], Nch; replace=false)
+posterior_samples = sample(chain[[:S0, :μ ,:Λ,:μp,:ϕ1,:ϕ2,:β1,:β2,:δ,:ψ,:ω,:σ2,:γS,:γA,:ηS,:ηA, :IA0, :P0]], Nch; replace=false)
 
 function myshowall(io, x, limit = false)
   println(io, summary(x), ":")
@@ -131,11 +128,11 @@ myshowall(stdout, Array(posterior_samples.value[:,:,1]), false)
 Err=zeros(Nch)
 for i in 1:Nch
 	pp=Array(posterior_samples.value[:,:,1])[i,:]
-	μ ,Λ,μp,ϕ2,δ,ψ,ω,σ2,γS,γA,ηA = pp[2:12]
+	μ ,Λ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA = pp[2:16]
 	p = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA]
 	S0=pp[1]
-	IA0=pp[13]
-	P0=pp[14]
+	IA0=pp[17]
+	P0=pp[18]
 	N0=S0+E0+IA0+IS0+R0
 	X0=[S0,E0,IA0,IS0,R0,P0,D0,N0]
 

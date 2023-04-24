@@ -1,0 +1,710 @@
+Fminbox
+-------
+Initial mu = 0.468772
+
+Fminbox iteration 1
+-------------------
+Calling inner optimizer with mu = 0.468772
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     2.199294e+03     2.120488e+05
+ * time: 0.013938188552856445
+     1     2.149222e+03     2.456941e+04
+ * time: 5.696011066436768
+     2     1.574966e+03     8.038666e+04
+ * time: 15.075402975082397
+     3     1.500772e+03     1.047531e+05
+ * time: 26.883371114730835
+     4     1.498577e+03     1.446161e+05
+ * time: 33.926613092422485
+     5     1.323718e+03     8.475241e+04
+ * time: 55.076977014541626
+     6     1.323382e+03     8.448581e+04
+ * time: 64.45627903938293
+     7     1.251060e+03     5.231959e+04
+ * time: 69.1483039855957
+     8     1.221369e+03     3.613413e+04
+ * time: 80.83991599082947
+     9     1.212280e+03     3.133334e+04
+ * time: 90.18808197975159
+    10     1.209485e+03     2.941230e+04
+ * time: 99.54729700088501
+    11     1.197847e+03     2.464471e+04
+ * time: 104.24181008338928
+    12     1.196650e+03     2.602649e+04
+ * time: 108.90868020057678
+    13     1.185548e+03     1.535211e+05
+ * time: 118.26157116889954
+    14     1.185454e+03     2.490825e+05
+ * time: 125.34686017036438
+    15     1.183347e+03     1.620356e+05
+ * time: 132.4096200466156
+    16     1.183091e+03     1.530975e+05
+ * time: 141.78016209602356
+    17     1.168337e+03     4.862077e+05
+ * time: 148.80456519126892
+    18     1.166482e+03     1.181708e+06
+ * time: 155.84809803962708
+    19     1.165153e+03     1.713042e+05
+ * time: 162.8635241985321
+    20     1.164874e+03     1.767454e+05
+ * time: 172.2439661026001
+    21     1.164684e+03     1.765435e+05
+ * time: 176.9089810848236
+    22     1.164666e+03     1.772970e+05
+ * time: 181.62081217765808
+    23     1.163974e+03     1.600568e+05
+ * time: 188.63810205459595
+    24     1.163057e+03     1.421603e+05
+ * time: 198.0146791934967
+    25     1.162425e+03     1.458349e+05
+ * time: 205.03281807899475
+    26     1.160988e+03     1.654688e+05
+ * time: 214.3992509841919
+    27     1.159359e+03     7.420742e+04
+ * time: 221.4238259792328
+    28     1.159356e+03     7.397164e+04
+ * time: 228.44618606567383
+    29     1.159299e+03     7.521208e+04
+ * time: 235.47186398506165
+    30     1.159261e+03     3.049365e+04
+ * time: 240.17058205604553
+    31     1.158729e+03     2.381724e+04
+ * time: 244.84468007087708
+    32     1.158446e+03     2.027801e+04
+ * time: 249.5442430973053
+    33     1.158441e+03     2.062044e+04
+ * time: 254.21413707733154
+    34     1.158410e+03     2.157978e+04
+ * time: 258.8920681476593
+    35     1.158382e+03     2.138697e+04
+ * time: 263.61370611190796
+    36     1.158255e+03     1.586170e+04
+ * time: 268.29148411750793
+    37     1.158254e+03     1.571404e+04
+ * time: 272.96310114860535
+    38     1.158242e+03     1.571357e+04
+ * time: 277.65672302246094
+    39     1.158241e+03     1.540578e+04
+ * time: 282.3322501182556
+    40     1.158227e+03     1.293254e+04
+ * time: 289.3613040447235
+    41     1.158166e+03     3.873323e+03
+ * time: 296.3944821357727
+    42     1.158118e+03     3.123746e+03
+ * time: 301.08337807655334
+    43     1.158113e+03     2.597883e+03
+ * time: 305.7471981048584
+    44     1.158112e+03     2.542917e+03
+ * time: 310.44044303894043
+    45     1.158107e+03     1.584245e+03
+ * time: 315.10712599754333
+    46     1.158105e+03     9.214080e+02
+ * time: 319.77590799331665
+    47     1.158103e+03     8.823622e+02
+ * time: 324.47866201400757
+    48     1.158103e+03     8.157364e+02
+ * time: 333.80684900283813
+    49     1.158103e+03     5.633405e+02
+ * time: 338.68328619003296
+    50     1.158102e+03     2.837030e+02
+ * time: 343.3867881298065
+
+Exiting inner optimizer with x = [0.9999624463835305, 0.9984195924060817, 0.9417107627780763, 0.9982824891165886, 0.9994055668389937, 0.8649077083923691, 0.9819761048012299, 0.5679341818577845, 0.17638556644255846]
+Current distance to box: 3.75536e-5
+Decreasing barrier term μ.
+
+Fminbox iteration 2
+-------------------
+Calling inner optimizer with mu = 0.000468772
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     1.136524e+03     1.219824e+04
+ * time: 9.059906005859375e-6
+     1     1.136519e+03     1.278399e+04
+ * time: 4.705954074859619
+     2     1.135039e+03     6.805235e+03
+ * time: 18.821031093597412
+     3     1.135031e+03     6.631273e+03
+ * time: 23.507479190826416
+     4     1.134957e+03     6.392999e+03
+ * time: 30.54861617088318
+     5     1.134866e+03     6.302279e+03
+ * time: 44.615809202194214
+     6     1.134864e+03     6.281686e+03
+ * time: 51.672428131103516
+     7     1.134800e+03     4.844951e+03
+ * time: 63.404179096221924
+     8     1.134772e+03     6.676771e+04
+ * time: 75.12832117080688
+     9     1.134389e+03     2.586188e+04
+ * time: 96.3178870677948
+    10     1.134318e+03     5.596613e+03
+ * time: 103.37715816497803
+    11     1.134288e+03     5.854124e+03
+ * time: 117.48481321334839
+    12     1.134288e+03     5.874173e+03
+ * time: 122.17839312553406
+    13     1.134288e+03     5.874676e+03
+ * time: 126.87517309188843
+    14     1.134279e+03     5.847924e+03
+ * time: 138.6239252090454
+    15     1.134272e+03     5.926294e+03
+ * time: 152.76339602470398
+    16     1.134264e+03     5.839256e+03
+ * time: 159.8007299900055
+    17     1.134263e+03     6.228925e+03
+ * time: 166.81851720809937
+    18     1.134258e+03     5.829717e+03
+ * time: 173.82812309265137
+    19     1.134256e+03     5.896055e+03
+ * time: 183.2078881263733
+    20     1.134250e+03     3.035265e+02
+ * time: 194.90667605400085
+    21     1.134249e+03     1.923702e+03
+ * time: 201.96443605422974
+    22     1.134247e+03     7.495335e+02
+ * time: 208.99765610694885
+    23     1.134247e+03     6.991756e+02
+ * time: 213.70046710968018
+    24     1.134247e+03     6.135829e+02
+ * time: 218.39676904678345
+    25     1.134247e+03     6.237468e+02
+ * time: 223.0819070339203
+    26     1.134247e+03     3.132024e+02
+ * time: 227.7722132205963
+    27     1.134247e+03     4.438734e+02
+ * time: 232.43249320983887
+    28     1.134247e+03     2.746364e+02
+ * time: 237.14089512825012
+    29     1.134247e+03     6.861018e+02
+ * time: 241.83249616622925
+    30     1.134247e+03     3.965943e+02
+ * time: 248.87707710266113
+    31     1.134247e+03     2.478031e+01
+ * time: 255.93148016929626
+    32     1.134247e+03     2.669938e+01
+ * time: 260.619343996048
+    33     1.134247e+03     3.008811e+01
+ * time: 265.31792306900024
+    34     1.134247e+03     2.984917e+01
+ * time: 270.0092451572418
+    35     1.134247e+03     5.877856e+01
+ * time: 274.7083740234375
+    36     1.134247e+03     6.021525e+01
+ * time: 279.3887240886688
+    37     1.134247e+03     5.086328e+01
+ * time: 284.085529088974
+    38     1.134247e+03     3.471822e+01
+ * time: 288.7800931930542
+    39     1.134247e+03     1.967123e+01
+ * time: 293.46753311157227
+    40     1.134247e+03     4.675772e+00
+ * time: 298.1401472091675
+    41     1.134247e+03     7.573144e+00
+ * time: 302.8333520889282
+    42     1.134247e+03     7.426658e+00
+ * time: 307.5309991836548
+    43     1.134247e+03     6.433548e+00
+ * time: 312.2194800376892
+    44     1.134247e+03     6.584512e+00
+ * time: 316.9286119937897
+    45     1.134247e+03     6.590140e+00
+ * time: 321.62143421173096
+    46     1.134247e+03     6.666225e-02
+ * time: 326.3099830150604
+    47     1.134247e+03     1.707025e-01
+ * time: 330.97696018218994
+    48     1.134247e+03     4.270875e-02
+ * time: 335.6741921901703
+    49     1.134247e+03     3.961665e-02
+ * time: 340.37426114082336
+    50     1.134247e+03     4.305689e-02
+ * time: 345.0564911365509
+
+Exiting inner optimizer with x = [0.999999922019202, 0.999997628475103, 0.943443035243385, 0.9999974584172135, 0.999998986420428, 0.8668809168283654, 0.9999812226925027, 0.56837359607888, 0.17794879297138982]
+Current distance to box: 7.79808e-8
+Decreasing barrier term μ.
+
+Fminbox iteration 3
+-------------------
+Calling inner optimizer with mu = 4.68772e-7
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     1.134210e+03     6.011421e+03
+ * time: 5.9604644775390625e-6
+     1     1.134206e+03     9.997018e+02
+ * time: 28.123056888580322
+     2     1.134206e+03     6.536206e+02
+ * time: 35.17077898979187
+     3     1.134206e+03     5.067224e+02
+ * time: 39.865927934646606
+     4     1.134206e+03     6.146597e+02
+ * time: 44.539774894714355
+     5     1.134206e+03     1.710989e+03
+ * time: 49.24000692367554
+     6     1.134206e+03     1.743028e+03
+ * time: 53.91106700897217
+     7     1.134206e+03     8.791161e+02
+ * time: 65.6431360244751
+     8     1.134206e+03     3.131271e+03
+ * time: 70.32035493850708
+     9     1.134206e+03     2.650704e+03
+ * time: 75.01963186264038
+    10     1.134206e+03     1.025319e+03
+ * time: 84.61247897148132
+    11     1.134206e+03     9.493122e+01
+ * time: 91.69432091712952
+    12     1.134206e+03     3.666498e+02
+ * time: 98.74457883834839
+    13     1.134206e+03     4.529558e+02
+ * time: 103.42775392532349
+    14     1.134206e+03     4.529211e+02
+ * time: 108.12389183044434
+    15     1.134206e+03     5.512869e+02
+ * time: 112.80131602287292
+    16     1.134206e+03     4.964402e+02
+ * time: 117.49815702438354
+    17     1.134206e+03     4.783567e+02
+ * time: 122.1780219078064
+    18     1.134206e+03     2.569893e+02
+ * time: 126.86494398117065
+    19     1.134206e+03     1.429383e+01
+ * time: 131.57083582878113
+    20     1.134206e+03     1.023914e+02
+ * time: 136.2468559741974
+    21     1.134206e+03     2.463321e+00
+ * time: 140.9423258304596
+    22     1.134206e+03     8.265533e-01
+ * time: 145.61609601974487
+    23     1.134206e+03     3.026890e-01
+ * time: 150.3414409160614
+    24     1.134206e+03     1.442448e-01
+ * time: 155.01832389831543
+    25     1.134206e+03     1.442399e-01
+ * time: 159.70451402664185
+    26     1.134206e+03     1.948397e-01
+ * time: 164.4110038280487
+    27     1.134206e+03     2.015060e-01
+ * time: 183.16143202781677
+    28     1.134206e+03     1.948385e-01
+ * time: 187.8374059200287
+    29     1.134206e+03     2.862672e-01
+ * time: 192.53109884262085
+    30     1.134206e+03     2.190029e-02
+ * time: 197.26192688941956
+    31     1.134206e+03     3.071553e-02
+ * time: 201.94807982444763
+    32     1.134206e+03     1.394732e-02
+ * time: 206.6265640258789
+    33     1.134206e+03     3.951518e-02
+ * time: 211.35592889785767
+    34     1.134206e+03     3.952851e-02
+ * time: 216.03676080703735
+    35     1.134206e+03     2.265267e-02
+ * time: 225.4275050163269
+    36     1.134206e+03     1.393966e-02
+ * time: 230.1209328174591
+    37     1.134206e+03     1.393887e-02
+ * time: 234.79766988754272
+    38     1.134206e+03     1.393879e-02
+ * time: 239.50464701652527
+    39     1.134206e+03     2.265449e-02
+ * time: 244.18385696411133
+    40     1.134206e+03     2.911260e-03
+ * time: 248.8636109828949
+    41     1.134206e+03     6.589722e-03
+ * time: 253.60505080223083
+    42     1.134206e+03     6.591337e-03
+ * time: 258.30960488319397
+    43     1.134206e+03     2.903619e-03
+ * time: 262.9884788990021
+    44     1.134206e+03     1.110909e-02
+ * time: 267.66024684906006
+    45     1.134206e+03     1.110860e-02
+ * time: 272.35536098480225
+    46     1.134206e+03     2.899470e-03
+ * time: 277.07050490379333
+    47     1.134206e+03     2.899695e-03
+ * time: 288.76063895225525
+    48     1.134206e+03     1.110573e-02
+ * time: 293.4671800136566
+    49     1.134206e+03     1.109647e-02
+ * time: 298.1471788883209
+    50     1.134206e+03     1.793078e-02
+ * time: 302.82270097732544
+
+Exiting inner optimizer with x = [0.9999999999210266, 0.9999999967071974, 0.9434424653811117, 0.9999999963939528, 0.9999999988170226, 0.8668878474393314, 0.9999999812218967, 0.5683745998538356, 0.17795286626807652]
+Current distance to box: 7.89734e-11
+Decreasing barrier term μ.
+
+Fminbox iteration 4
+-------------------
+Calling inner optimizer with mu = 4.68772e-10
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     1.134206e+03     5.935806e+03
+ * time: 5.0067901611328125e-6
+     1     1.134206e+03     1.278748e+02
+ * time: 28.10359811782837
+     2     1.134206e+03     1.118513e+02
+ * time: 32.77558612823486
+     3     1.134206e+03     1.118511e+02
+ * time: 37.47359299659729
+     4     1.134206e+03     1.038067e+02
+ * time: 42.14211416244507
+     5     1.134206e+03     8.765237e+01
+ * time: 46.84847807884216
+     6     1.134206e+03     2.833700e+02
+ * time: 51.5293550491333
+     7     1.134206e+03     6.323453e+01
+ * time: 56.22610402107239
+     8     1.134206e+03     2.841542e+00
+ * time: 63.24469614028931
+     9     1.134206e+03     2.841636e+00
+ * time: 70.26981520652771
+    10     1.134206e+03     2.841724e+00
+ * time: 74.95315718650818
+    11     1.134206e+03     2.841653e+00
+ * time: 89.05763697624207
+    12     1.134206e+03     2.841634e+00
+ * time: 98.42058420181274
+    13     1.134206e+03     2.841629e+00
+ * time: 103.10351204872131
+    14     1.134206e+03     2.841629e+00
+ * time: 107.78898406028748
+    15     1.134206e+03     2.841630e+00
+ * time: 119.50486707687378
+    16     1.134206e+03     2.841633e+00
+ * time: 124.18545913696289
+    17     1.134206e+03     2.841631e+00
+ * time: 128.86616110801697
+    18     1.134206e+03     2.841629e+00
+ * time: 220.5091371536255
+    19     1.134206e+03     2.211097e+01
+ * time: 225.18656516075134
+    20     1.134206e+03     2.211102e+01
+ * time: 229.8761110305786
+    21     1.134206e+03     5.498150e+00
+ * time: 234.53816509246826
+    22     1.134206e+03     5.498135e+00
+ * time: 239.22698402404785
+    23     1.134206e+03     5.498128e+00
+ * time: 243.9114100933075
+    24     1.134206e+03     5.498132e+00
+ * time: 248.60338401794434
+    25     1.134206e+03     5.498133e+00
+ * time: 253.29322600364685
+    26     1.134206e+03     5.498133e+00
+ * time: 260.3271679878235
+    27     1.134206e+03     5.498133e+00
+ * time: 272.04318404197693
+    28     1.134206e+03     5.498133e+00
+ * time: 276.72764706611633
+    29     1.134206e+03     5.498128e+00
+ * time: 281.4167540073395
+    30     1.134206e+03     2.841645e+00
+ * time: 286.11145305633545
+    31     1.134206e+03     2.841644e+00
+ * time: 290.7803900241852
+    32     1.134206e+03     2.841637e+00
+ * time: 297.81065011024475
+    33     1.134206e+03     2.841638e+00
+ * time: 302.4908711910248
+    34     1.134206e+03     2.841654e+00
+ * time: 307.16336011886597
+    35     1.134206e+03     2.841660e+00
+ * time: 311.8502311706543
+    36     1.134206e+03     2.841657e+00
+ * time: 316.55784010887146
+    37     1.134206e+03     2.841657e+00
+ * time: 325.9106810092926
+
+Exiting inner optimizer with x = [0.9999999999999211, 0.9999999999967051, 0.9434424654228695, 0.9999999999963922, 0.9999999999988168, 0.866887854060527, 0.9999999999812289, 0.5683746008731456, 0.1779528708694998]
+Current distance to box: 7.89369e-14
+Decreasing barrier term μ.
+
+Fminbox iteration 5
+-------------------
+Calling inner optimizer with mu = 4.68772e-13
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     1.134206e+03     5.935729e+03
+ * time: 5.0067901611328125e-6
+     1     1.134206e+03     3.824683e+03
+ * time: 25.77783703804016
+     2     1.134206e+03     1.713521e+03
+ * time: 187.4559190273285
+     3     1.134206e+03     1.713521e+03
+ * time: 194.37196516990662
+     4     1.134206e+03     1.713519e+03
+ * time: 198.9585690498352
+     5     1.134206e+03     1.713485e+03
+ * time: 203.5734851360321
+     6     1.134206e+03     1.713405e+03
+ * time: 208.1632251739502
+     7     1.134206e+03     1.713405e+03
+ * time: 366.96156907081604
+     8     1.134206e+03     1.713405e+03
+ * time: 511.6524660587311
+     9     1.134206e+03     1.713405e+03
+ * time: 676.1118011474609
+    10     1.134206e+03     1.713405e+03
+ * time: 831.1836640834808
+    11     1.134206e+03     1.713405e+03
+ * time: 974.9522521495819
+    12     1.134206e+03     1.713405e+03
+ * time: 1139.9495561122894
+    13     1.134206e+03     1.713405e+03
+ * time: 1286.3851780891418
+    14     1.134206e+03     1.713405e+03
+ * time: 1458.0233311653137
+    15     1.134206e+03     1.713405e+03
+ * time: 1625.1209421157837
+    16     1.134206e+03     1.713405e+03
+ * time: 1778.2852370738983
+    17     1.134206e+03     1.713405e+03
+ * time: 1782.8552601337433
+    18     1.134206e+03     1.713405e+03
+ * time: 1963.4021561145782
+    19     1.134206e+03     1.713405e+03
+ * time: 2096.1061770915985
+    20     1.134206e+03     1.713405e+03
+ * time: 2249.242571115494
+    21     1.134206e+03     1.713405e+03
+ * time: 2397.5912160873413
+    22     1.134206e+03     1.713405e+03
+ * time: 2577.210998058319
+    23     1.134206e+03     1.713405e+03
+ * time: 2689.4294741153717
+    24     1.134206e+03     1.713405e+03
+ * time: 2821.540347099304
+    25     1.134206e+03     1.713405e+03
+ * time: 2940.106470108032
+    26     1.134206e+03     1.713405e+03
+ * time: 3072.1858270168304
+
+Exiting inner optimizer with x = [0.9999999999999999, 0.9999999999999977, 0.943442467854168, 0.9999999999999962, 0.9999999999999988, 0.8668878541195887, 0.9999999999999855, 0.5683746007947, 0.17795287198442755]
+Current distance to box: 1.11022e-16
+Decreasing barrier term μ.
+
+Fminbox iteration 6
+-------------------
+Calling inner optimizer with mu = 4.68772e-16
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     1.134206e+03     5.935729e+03
+ * time: 5.9604644775390625e-6
+     1     1.134206e+03     5.931507e+03
+ * time: 4.539502859115601
+     2     1.134206e+03     5.931507e+03
+ * time: 9.130998849868774
+     3     1.134206e+03     5.931507e+03
+ * time: 177.6457450389862
+     4     1.134206e+03     5.931507e+03
+ * time: 334.73347783088684
+     5     1.134206e+03     5.931507e+03
+ * time: 493.9603018760681
+     6     1.134206e+03     5.931507e+03
+ * time: 651.2398200035095
+     7     1.134206e+03     5.931507e+03
+ * time: 803.5582408905029
+     8     1.134206e+03     5.931507e+03
+ * time: 946.8333320617676
+     9     1.134206e+03     5.931507e+03
+ * time: 1097.1459908485413
+    10     1.134206e+03     5.931507e+03
+ * time: 1265.4146900177002
+    11     1.134206e+03     5.931507e+03
+ * time: 1413.1748700141907
+    12     1.134206e+03     5.931507e+03
+ * time: 1554.3607828617096
+    13     1.134206e+03     5.931507e+03
+ * time: 1697.454313993454
+    14     1.134206e+03     5.931507e+03
+ * time: 1838.2739069461823
+    15     1.134206e+03     5.931507e+03
+ * time: 2011.2184200286865
+    16     1.134206e+03     5.931507e+03
+ * time: 2140.806746006012
+    17     1.134206e+03     5.931507e+03
+ * time: 2252.351884841919
+    18     1.134206e+03     5.931507e+03
+ * time: 2354.5228848457336
+    19     1.134206e+03     5.931507e+03
+ * time: 2493.2317390441895
+    20     1.134206e+03     5.931507e+03
+ * time: 2638.401129961014
+    21     1.134206e+03     5.931507e+03
+ * time: 2756.351711034775
+
+Exiting inner optimizer with x = [0.9999999999999999, 0.9999999999999996, 0.9434424646702342, 0.9999999999999998, 0.9999999999999999, 0.866887853624095, 0.9999999999999977, 0.5683746010699019, 0.17795286997256374]
+Current distance to box: 1.11022e-16
+Decreasing barrier term μ.
+
+Fminbox iteration 7
+-------------------
+Calling inner optimizer with mu = 4.68772e-19
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     1.134206e+03     5.935729e+03
+ * time: 6.198883056640625e-6
+     1     1.134206e+03     5.935725e+03
+ * time: 129.5433371067047
+     2     1.134206e+03     5.935725e+03
+ * time: 277.06027698516846
+     3     1.134206e+03     5.935725e+03
+ * time: 417.642786026001
+     4     1.134206e+03     5.935725e+03
+ * time: 564.2788951396942
+     5     1.134206e+03     5.935725e+03
+ * time: 671.3795671463013
+     6     1.134206e+03     5.935725e+03
+ * time: 802.881313085556
+
+Exiting inner optimizer with x = [0.9999999999999999, 0.9999999999999996, 0.9434424646516786, 0.9999999999999998, 0.9999999999999999, 0.8668878536002276, 0.9999999999999982, 0.56837460106402, 0.17795287003170948]
+Current distance to box: 1.11022e-16
+Decreasing barrier term μ.
+
+Fminbox iteration 8
+-------------------
+Calling inner optimizer with mu = 4.68772e-22
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     1.134206e+03     5.935729e+03
+ * time: 5.9604644775390625e-6
+     1     1.134206e+03     5.935729e+03
+ * time: 106.69378399848938
+     2     1.134206e+03     5.935729e+03
+ * time: 256.2722120285034
+     3     1.134206e+03     5.935729e+03
+ * time: 385.47653818130493
+     4     1.134206e+03     5.935729e+03
+ * time: 514.5681331157684
+     5     1.134206e+03     5.935729e+03
+ * time: 659.7750210762024
+     6     1.134206e+03     5.935729e+03
+ * time: 786.6439609527588
+     7     1.134206e+03     5.935729e+03
+ * time: 908.9122850894928
+
+Exiting inner optimizer with x = [0.9999999999999999, 0.9999999999999996, 0.9434424646516903, 0.9999999999999998, 0.9999999999999999, 0.8668878536002538, 0.9999999999999988, 0.5683746010638825, 0.1779528700316752]
+Current distance to box: 1.11022e-16
+Decreasing barrier term μ.
+
+Fminbox iteration 9
+-------------------
+Calling inner optimizer with mu = 4.68772e-25
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     1.134206e+03     5.935729e+03
+ * time: 5.0067901611328125e-6
+     1     1.134206e+03     5.935729e+03
+ * time: 126.91481709480286
+
+Exiting inner optimizer with x = [0.9999999999999999, 0.9999999999999996, 0.9434424646516903, 0.9999999999999998, 0.9999999999999999, 0.8668878536002538, 0.9999999999999988, 0.5683746010638825, 0.1779528700316752]
+Current distance to box: 1.11022e-16
+Decreasing barrier term μ.
+
+ * Status: success
+
+ * Candidate solution
+    Final objective value:     1.134206e+03
+
+ * Found with
+    Algorithm:     Fminbox with L-BFGS
+
+ * Convergence measures
+    |x - x'|               = 0.00e+00 ≤ 0.0e+00
+    |x - x'|/|x'|          = 0.00e+00 ≤ 0.0e+00
+    |f(x) - f(x')|         = 0.00e+00 ≤ 0.0e+00
+    |f(x) - f(x')|/|f(x')| = 0.00e+00 ≤ 0.0e+00
+    |g(x)|                 = 1.11e-04 ≰ 1.0e-08
+
+ * Work counters
+    Seconds run:   9079  (vs limit Inf)
+    Iterations:    9
+    f(x) calls:    3963
+    ∇f(x) calls:   3963
+
+9-element Vector{Float64}:
+ 0.9999999999999999
+ 0.9999999999999996
+ 0.9434424646516903
+ 0.9999999999999998
+ 0.9999999999999999
+ 0.8668878536002538
+ 0.9999999999999988
+ 0.5683746010638825
+pure virtual method called
+terminate called without an active exception
+
+signal (6): Aborted
+in expression starting at none:0
+gsignal at /lib64/libc.so.6 (unknown line)
+abort at /lib64/libc.so.6 (unknown line)
+__verbose_terminate_handler at /workspace/srcdir/gcc-12.1.0/libstdc++-v3/libsupc++/vterminate.cc:95
+__terminate at /workspace/srcdir/gcc-12.1.0/libstdc++-v3/libsupc++/eh_terminate.cc:48
+terminate at /workspace/srcdir/gcc-12.1.0/libstdc++-v3/libsupc++/eh_terminate.cc:58
+__cxa_pure_virtual at /workspace/srcdir/gcc-12.1.0/libstdc++-v3/libsupc++/pure.cc:50
+_ZN4llvm11raw_ostream5writeEPKcm at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm11LLVMContext8diagnoseERKNS_14DiagnosticInfoE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZNSt17_Function_handlerIFvRKN4llvm12SMDiagnosticEbRKNS0_9SourceMgrERSt6vectorIPKNS0_6MDNodeESaISA_EEEZNS0_28MachineModuleInfoWrapperPass16doInitializationERNS0_6ModuleEEUlS3_bS6_SD_E_E9_M_invokeERKSt9_Any_dataS3_ObS6_SD_ at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm9MCContext8diagnoseERKNS_12SMDiagnosticE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN12_GLOBAL__N_19AsmParser11DiagHandlerERKN4llvm12SMDiagnosticEPv at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZNK4llvm9SourceMgr12PrintMessageERNS_11raw_ostreamENS_5SMLocENS0_8DiagKindERKNS_5TwineENS_8ArrayRefINS_7SMRangeEEENS8_INS_7SMFixItEEEb at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZNK4llvm9SourceMgr12PrintMessageENS_5SMLocENS0_8DiagKindERKNS_5TwineENS_8ArrayRefINS_7SMRangeEEENS6_INS_7SMFixItEEEb at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN12_GLOBAL__N_19AsmParser3RunEbb at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZNK4llvm10AsmPrinter13emitInlineAsmENS_9StringRefERKNS_15MCSubtargetInfoERKNS_15MCTargetOptionsEPKNS_6MDNodeENS_9InlineAsm10AsmDialectE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZNK4llvm10AsmPrinter13emitInlineAsmEPKNS_12MachineInstrE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm10AsmPrinter16emitFunctionBodyEv at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm13X86AsmPrinter20runOnMachineFunctionERNS_15MachineFunctionE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm19MachineFunctionPass13runOnFunctionERNS_8FunctionE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm13FPPassManager13runOnFunctionERNS_8FunctionE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm13FPPassManager11runOnModuleERNS_6ModuleE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm6legacy15PassManagerImpl3runERNS_6ModuleE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+operator() at /appl/soft/math/julia/julia-1.8.5/src/jitlayers.cpp:528
+_ZN4llvm3orc14IRCompileLayer4emitESt10unique_ptrINS0_29MaterializationResponsibilityESt14default_deleteIS3_EENS0_16ThreadSafeModuleE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc31BasicIRLayerMaterializationUnit11materializeESt10unique_ptrINS0_29MaterializationResponsibilityESt14default_deleteIS3_EE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc19MaterializationTask3runEv at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm6detail18UniqueFunctionBaseIvJSt10unique_ptrINS_3orc4TaskESt14default_deleteIS4_EEEE8CallImplIPFvS7_EEEvPvRS7_ at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc16ExecutionSession22dispatchOutstandingMUsEv at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc16ExecutionSession17OL_completeLookupESt10unique_ptrINS0_21InProgressLookupStateESt14default_deleteIS3_EESt10shared_ptrINS0_23AsynchronousSymbolQueryEESt8functionIFvRKNS_8DenseMapIPNS0_8JITDylibENS_8DenseSetINS0_15SymbolStringPtrENS_12DenseMapInfoISF_EEEENSG_ISD_EENS_6detail12DenseMapPairISD_SI_EEEEEE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc25InProgressFullLookupState8completeESt10unique_ptrINS0_21InProgressLookupStateESt14default_deleteIS3_EE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc16ExecutionSession19OL_applyQueryPhase1ESt10unique_ptrINS0_21InProgressLookupStateESt14default_deleteIS3_EENS_5ErrorE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc16ExecutionSession6lookupENS0_10LookupKindERKSt6vectorISt4pairIPNS0_8JITDylibENS0_19JITDylibLookupFlagsEESaIS8_EENS0_15SymbolLookupSetENS0_11SymbolStateENS_15unique_functionIFvNS_8ExpectedINS_8DenseMapINS0_15SymbolStringPtrENS_18JITEvaluatedSymbolENS_12DenseMapInfoISI_EENS_6detail12DenseMapPairISI_SJ_EEEEEEEEESt8functionIFvRKNSH_IS6_NS_8DenseSetISI_SL_EENSK_IS6_EENSN_IS6_SV_EEEEEE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc16ExecutionSession6lookupERKSt6vectorISt4pairIPNS0_8JITDylibENS0_19JITDylibLookupFlagsEESaIS7_EERKNS0_15SymbolLookupSetENS0_10LookupKindENS0_11SymbolStateESt8functionIFvRKNS_8DenseMapIS5_NS_8DenseSetINS0_15SymbolStringPtrENS_12DenseMapInfoISK_EEEENSL_IS5_EENS_6detail12DenseMapPairIS5_SN_EEEEEE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc16ExecutionSession6lookupERKSt6vectorISt4pairIPNS0_8JITDylibENS0_19JITDylibLookupFlagsEESaIS7_EENS0_15SymbolStringPtrENS0_11SymbolStateE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc16ExecutionSession6lookupENS_8ArrayRefIPNS0_8JITDylibEEENS0_15SymbolStringPtrENS0_11SymbolStateE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc16ExecutionSession6lookupENS_8ArrayRefIPNS0_8JITDylibEEENS_9StringRefENS0_11SymbolStateE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+addModule at /appl/soft/math/julia/julia-1.8.5/src/jitlayers.cpp:968
+jl_add_to_ee at /appl/soft/math/julia/julia-1.8.5/src/jitlayers.cpp:1261 [inlined]
+jl_add_to_ee at /appl/soft/math/julia/julia-1.8.5/src/jitlayers.cpp:1305
+jl_add_to_ee at /appl/soft/math/julia/julia-1.8.5/src/jitlayers.cpp:1327 [inlined]
+_jl_compile_codeinst at /appl/soft/math/julia/julia-1.8.5/src/jitlayers.cpp:149
+jl_generate_fptr_impl at /appl/soft/math/julia/julia-1.8.5/src/jitlayers.cpp:332
+jl_compile_method_internal at /appl/soft/math/julia/julia-1.8.5/src/gf.c:2091 [inlined]
+jl_compile_method_internal at /appl/soft/math/julia/julia-1.8.5/src/gf.c:2035
+_jl_invoke at /appl/soft/math/julia/julia-1.8.5/src/gf.c:2369 [inlined]
+ijl_apply_generic at /appl/soft/math/julia/julia-1.8.5/src/gf.c:2559
+#handle_message#3 at /appl/soft/math/julia/julia-1.8.5/usr/share/julia/stdlib/v1.8/Logging/src/ConsoleLogger.jl:134
+handle_message##kw at /appl/soft/math/julia/julia-1.8.5/usr/share/julia/stdlib/v1.8/Logging/src/ConsoleLogger.jl:106
+unknown function (ip: 0x7fd0ac1ff8b4)
+macro expansion at ./logging.jl:365 [inlined]
+profile_printing_listener at /appl/soft/math/julia/julia-1.8.5/usr/share/julia/stdlib/v1.8/Profile/src/Profile.jl:44
+#3 at ./threadingconstructs.jl:258
+jfptr_YY.3_63007 at /appl/soft/math/julia/julia-1.8.5/usr/lib/julia/sys.so (unknown line)
+jl_apply at /appl/soft/math/julia/julia-1.8.5/src/julia.h:1843 [inlined]
+start_task at /appl/soft/math/julia/julia-1.8.5/src/task.c:931
+Allocations: 47102974064 (Pool: 46657024210; Big: 445949854); GC: 39965
+ 0.1779528700316752srun: error: r03c21: task 0: Aborted
+srun: launch/slurm: _step_signal: Terminating StepId=16202146.0

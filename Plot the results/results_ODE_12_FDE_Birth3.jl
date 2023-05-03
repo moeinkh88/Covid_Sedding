@@ -1,5 +1,4 @@
-# plots for paramters obtained from Turing ODE 14, when Λ=Birth rate and fitting only to C and R.
-# comparing the results with those modified by optimized fractional orders
+
 
 using Statistics
 using CSV, DataFrames
@@ -16,10 +15,10 @@ dataset_R = CSV.read("time_series_covid19_recovered_global.csv", DataFrame) # al
 RData=dataset_R[dataset_R[!,2].=="South Africa",70:250]
 TrueR=diff(Float64.(Vector(RData[1,:])))
 
-dataset_D = CSV.read("time_series_covid19_deaths_global.csv", DataFrame) # all data of Recover
-DData=dataset_D[dataset_D[!,2].=="South Africa",70:250]
-TrueD=diff(Float64.(Vector(DData[1,:])))
 
+dataset_D = CSV.read("time_series_covid19_deaths_global.csv", DataFrame) # all data of Recover
+DData=dataset_D[dataset_D[!,2].=="South Africa",70:249]
+TrueD=(Float64.(Vector(DData[1,:])))
 #initial conditons and parameters
 
 E0=0;IA0=100;IS0=17;R0=0;P0=100;D0=0;
@@ -39,7 +38,7 @@ function  F(dx, x, par, t)
     dx[4]= δ*ω*E - (μ + σ)*IS - γS*IS
     dx[5]=γS*IS + γA*IA - μ*R
     dx[6]=ηA*IA + ηS*IS - μp*P
-    dx[7]=σ*(IA+IS) - μ*D
+    dx[7]=σ*(IA+IS)
     dx[8]=Λ*N - σ*(IA+IS) - μ*N
     return nothing
 
@@ -56,28 +55,28 @@ function  Ff(t, x, par)
     dIS= δ*ω*E - (μ + σ)*IS - γS*IS
     dR=γS*IS + γA*IA - μ*R
     dP=ηA*IA + ηS*IS - μp*P
-    dD=σ*(IA+IS) - μ*D
+    dD=σ*(IA+IS)
     dN=Λ*N - σ*(IA+IS) - μ*N
     return [dS,dE,dIA,dIS,dR,dP,dD,dN]
 
 end
 
-  pp=[25060.216457227714
-  	0.17016670078596785
-	  1.781847356255663e-7
-	  0.6553727445190615
-	  1.279308675438442e-5
-	  4.305136647875811e-5
-	  0.8580730111477723
-	  0.08585144261559632
-	  0.6837796665562463
-	  0.11184180526657209
-	  6.752788944397819e-5
-	  0.9748087783772565
-	  0.11779422117231593
-	  0.061658367897578344
-    167.56655046390654
-	10.718478095775652]
+  pp=[7548.045231531718
+    0.15782338058089418
+    1.0743043176090302e-6
+    0.4546546658049586
+    0.0001120776533507358
+    1.2758470580730523e-6
+    0.7248572763638965
+    0.1502191907331448
+    0.8841167641517534
+    0.030273913785749975
+    0.0024970026839355617
+    0.4343498498777916
+    2.3307901908341236e-5
+    0.49870372293270493
+    0.16156107176510295
+	0.2591316689996923]
 	Λ=19.995e-3 # birth rate (19.995 births per 1000 people)
 	μ=9.468e-3 # natural human death rate
 	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA = pp[2:14]
@@ -85,7 +84,6 @@ end
 	S0=pp[1]
 	IA0=pp[15]
  	P0=pp[16]
-	E0= 35.96791914222955; IA0 = 299.97231992088854; P0 = 0.05424285701446199
  	N0=S0+E0+IA0+IS0+R0
  	X0=[S0,E0,IA0,IS0,R0,P0,D0,N0]
 p = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA]
@@ -93,25 +91,17 @@ p = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA]
 prob = ODEProblem(F, X0, tSpan, p)
 sol = solve(prob, alg_hints=[:stiff]; p=p, saveat=1)
 # plot(reduce(vcat,sol.u')[:,8])
-Pred=reduce(vcat,sol.u')[:,[4]]
-# PredI=reduce(vcat,sol.u')[:,4]
-# PredR=reduce(vcat,sol.u')[:,5]
-# rmsd([C TrueR.^2], [PredI PredR.^2])
-rmsd(C, Pred)
+Pred=reduce(vcat,sol.u')[:,[4,5]]
+rmsd([C TrueR], Pred)
 
-Order=ones(8)
-# args = [0.5001175408172511, 0.9999970873210817, 0.9999978721509972, 0.9999999999999988, 0.9999719051580541, 0.9999267647915293, 0.693003453777595, 2.9774980971158542, 167.56215478257218, 10.675403466403734, 0.22431926350819367, 0.550958207895055, 0.6350436154728419, 1.9825537020182498]
-args = [0.9909265167105732, 0.9999429475333177, 0.9999406399381575, 0.9999997893504942, 0.500000977757587, 0.9440649208781777, 0.9999999431118562, 35.96791914222955, 299.97231992088854, 0.05424285701446199]
-Order[1:6]=args[1:6];
-Order[8]=args[7]
-# E0, IA0, P0, ϕ2, δ, ω, γA = args[8:14]
-E0, IA0, P0 = args[8:10]
-N0=S0+E0+IA0+IS0+R0
-X0=[S0,E0,IA0,IS0,R0,P0,D0,N0]
+args =[0.7231969713433972, 0.9999999997355187, 0.9999993491979966, 0.9999999992963509, 0.9999999999999256, 0.9999892236471805, 0.9999999999999944, 0.9757404650341885, 2.7176500969217754, 0.7320277920013555, 1.0003811870421284e-5, 0.1729453781775921, 0.36937953205043017]
+Order=args[1:8]
+ϕ2,δ,ψ,γA, ηA  = args[9:13]
+
 par1 = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA]
 _, x1 = FDEsolver(Ff, [1,length(C)], X0, Order, par1, h=.05, nc=4)
-Pred1=x1[1:20:end,4]
-rmsd(C, Pred1)
+Pred1=x1[1:20:end,[4,5,7]]
+rmsd([C TrueR], Pred1)
 
 using Plots
 plot(reduce(vcat,sol.u')[:,4])
@@ -119,11 +109,11 @@ plot!(Pred1[:,1])
 scatter!(C)
 
 plot(reduce(vcat,sol.u')[:,5])
-plot!(x1[1:20:end,7])
+plot!(Pred1[:,2])
 scatter!(TrueR)
 
 plot(reduce(vcat,sol.u')[:,7])
-plot!(x1[1:20:end,7])
+plot!(Pred1[:,3])
 scatter!(TrueD)
 
 #population

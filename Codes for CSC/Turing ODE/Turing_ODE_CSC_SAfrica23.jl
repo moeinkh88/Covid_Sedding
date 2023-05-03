@@ -101,7 +101,7 @@ prob = ODEProblem(F, x0, tSpan, par)
 	N0=S0+E0+IA0+IS0+R0
 	X0=[S0,E0,IA0,IS0,R0,R10,P0,D0,N0]
 	prob = remake(prob; p = p, u0 = X0)
-    x = solve(prob,alg_hints=[:stiff]; saveat=1)
+    x = solve(prob,alg_hints=[:stiff], abstol = 1e-12, reltol = 1e-12; saveat=1)
 	II=x[4,:]
 	RR=x[6,:]
 	DD=x[8,:]

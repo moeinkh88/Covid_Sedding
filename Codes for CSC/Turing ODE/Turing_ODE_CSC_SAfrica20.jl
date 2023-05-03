@@ -113,7 +113,7 @@ prob = ODEProblem(F, x0, tSpan, par)
 	add6=RR[180]*ones(Ndays)
 
 
-	pred=[II add1 add2 add3 RR add5 add5 add6]
+	pred=[II add1 add2 add3 RR add4 add5 add6]
 	# Observations.
     for i in 1:length(pred[1,:])
         data[:,i] ~ MvNormal(pred[:,i], σ^2 * I)

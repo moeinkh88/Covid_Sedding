@@ -23,7 +23,7 @@ TrueD=diff(Float64.(Vector(DData[1,:])))
 
 #initial conditons and parameters
 
-E0=35.96791914222955;IA0=100;IS0=17;R0=0;P0=100;D0=0;
+E0=35.96791914222955;IA0=100;IS0=17;R0=0;R10=0;P0=100;D0=0;
 Λ=19.995e-3 # birth rate (19.995 births per 1000 people)
 μ=9.468e-3 # natural human death rate
 tSpan=(1,length(C))
@@ -82,7 +82,7 @@ for ii in 1:length(BB)
 	IA0=BB[ii][15]
 	P0=BB[ii][16]
 	N0=S0+E0+IA0+IS0+R0
-	X0=[S0,E0,IA0,IS0,R0,P0,D0,N0]
+	X0=[S0,E0,IA0,IS0,R0,R10,P0,D0,N0]
 
 	prob = ODEProblem(F, X0, tSpan, p1)
 	sol = solve(prob, alg_hints=[:stiff]; saveat=1)

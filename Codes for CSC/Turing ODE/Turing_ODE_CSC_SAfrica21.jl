@@ -101,7 +101,7 @@ prob = ODEProblem(F, x0, tSpan, par)
 	N0=S0+E0+IA0+IS0+R0
 	X0=[S0,E0,IA0,IS0,R0,R10,P0,D0,N0]
 	prob = remake(prob; p = p, u0 = X0)
-    x = solve(prob,alg_hints=[:stiff]; saveat=1)
+    x = solve(prob,alg_hints=[:stiff], abstol = 1e-12, reltol = 1e-12; saveat=1)
 	II=x[4,:]
 	RR=x[6,:]
 	DD=x[8,:]
@@ -113,7 +113,7 @@ prob = ODEProblem(F, x0, tSpan, par)
 	add6=RR[180]*ones(Ndays)
 
 
-	pred=[II add1 add2 add3 RR add5 add5 add6 DD]
+	pred=[II add1 add2 add3 RR add4 add5 add6 DD]
 	# Observations.
     for i in 1:length(pred[1,:])
         data[:,i] ~ MvNormal(pred[:,i], σ^2 * I)

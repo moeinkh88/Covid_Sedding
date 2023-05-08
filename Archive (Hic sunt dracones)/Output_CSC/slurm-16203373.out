@@ -1,0 +1,941 @@
+Fminbox
+-------
+Initial mu = 0.155554
+
+Fminbox iteration 1
+-------------------
+Calling inner optimizer with mu = 0.155554
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     4.478882e+03     5.044332e+04
+ * time: 0.014494895935058594
+     1     3.306006e+03     2.158715e+05
+ * time: 8.271827936172485
+     2     3.214571e+03     2.037353e+05
+ * time: 15.57685399055481
+     3     3.202564e+03     1.893330e+05
+ * time: 22.868104934692383
+     4     3.093358e+03     1.758329e+05
+ * time: 42.23587083816528
+     5     3.091852e+03     1.754960e+05
+ * time: 51.99420690536499
+     6     3.034916e+03     1.600967e+07
+ * time: 68.98242282867432
+     7     3.031469e+03     1.012761e+08
+ * time: 78.69568300247192
+     8     2.828924e+03     1.226891e+11
+ * time: 100.5343828201294
+     9     2.710926e+03     1.601094e+09
+ * time: 112.63997793197632
+    10     2.708708e+03     1.616763e+09
+ * time: 124.76380801200867
+    11     2.590198e+03     2.066101e+09
+ * time: 144.20203590393066
+    12     2.490886e+03     1.851192e+09
+ * time: 153.92886900901794
+    13     2.424953e+03     9.821955e+08
+ * time: 163.61084294319153
+    14     2.294256e+03     2.854514e+10
+ * time: 178.11973595619202
+    15     2.293904e+03     2.973367e+10
+ * time: 187.87420201301575
+    16     2.290162e+03     8.587863e+10
+ * time: 195.21036291122437
+    17     2.289760e+03     3.653576e+10
+ * time: 202.75026082992554
+    18     2.221012e+03     2.485118e+10
+ * time: 217.43432784080505
+    19     2.076043e+03     3.102628e+09
+ * time: 224.74269795417786
+    20     2.067959e+03     3.032062e+09
+ * time: 236.91243386268616
+    21     2.032836e+03     5.468151e+09
+ * time: 246.65875697135925
+    22     2.029975e+03     5.591221e+09
+ * time: 253.9595878124237
+    23     2.027461e+03     1.464891e+10
+ * time: 263.70256090164185
+    24     2.022829e+03     4.004818e+09
+ * time: 268.5649118423462
+    25     2.021498e+03     2.562081e+09
+ * time: 278.29716396331787
+    26     2.017030e+03     4.140151e+10
+ * time: 292.85510993003845
+    27     1.989167e+03     2.298823e+10
+ * time: 305.0501198768616
+    28     1.988725e+03     1.288958e+10
+ * time: 314.8163278102875
+    29     1.983495e+03     5.900428e+09
+ * time: 324.5380790233612
+    30     1.982014e+03     1.293981e+10
+ * time: 336.6897118091583
+    31     1.982011e+03     9.270400e+09
+ * time: 341.5542209148407
+    32     1.980156e+03     9.313412e+10
+ * time: 353.6644678115845
+    33     1.975907e+03     1.247682e+10
+ * time: 363.35506987571716
+    34     1.975902e+03     1.207947e+10
+ * time: 370.624648809433
+    35     1.975893e+03     1.221980e+10
+ * time: 377.94503593444824
+    36     1.974631e+03     1.398718e+10
+ * time: 387.62313199043274
+    37     1.972466e+03     7.488561e+10
+ * time: 397.3499698638916
+    38     1.971196e+03     3.289531e+10
+ * time: 407.04167580604553
+    39     1.970996e+03     5.319525e+10
+ * time: 411.9116518497467
+    40     1.970595e+03     1.597635e+10
+ * time: 419.1841359138489
+    41     1.970586e+03     1.542003e+10
+ * time: 424.0385568141937
+    42     1.970582e+03     1.523740e+10
+ * time: 431.3251299858093
+    43     1.970512e+03     1.259560e+10
+ * time: 436.19377303123474
+    44     1.970101e+03     8.492861e+09
+ * time: 441.06680703163147
+    45     1.969961e+03     8.437167e+09
+ * time: 445.927099943161
+    46     1.969719e+03     1.000736e+10
+ * time: 455.66481494903564
+    47     1.969576e+03     9.284222e+09
+ * time: 460.51662588119507
+    48     1.969537e+03     1.096828e+10
+ * time: 467.8098428249359
+    49     1.969536e+03     1.105744e+10
+ * time: 472.67809200286865
+    50     1.969451e+03     5.010585e+09
+ * time: 479.9577069282532
+    51     1.969408e+03     4.417856e+09
+ * time: 487.2776219844818
+    52     1.969381e+03     4.013618e+09
+ * time: 492.1320888996124
+    53     1.969380e+03     4.042137e+09
+ * time: 497.0214660167694
+    54     1.969288e+03     3.843290e+09
+ * time: 501.8853828907013
+    55     1.969284e+03     3.825441e+09
+ * time: 506.7317068576813
+    56     1.969275e+03     3.405894e+09
+ * time: 513.9983608722687
+    57     1.969134e+03     1.657469e+09
+ * time: 521.2532880306244
+    58     1.969022e+03     1.180726e+09
+ * time: 528.4797139167786
+    59     1.968914e+03     9.781608e+08
+ * time: 535.7332928180695
+    60     1.968910e+03     9.698019e+08
+ * time: 540.5739099979401
+    61     1.968884e+03     1.012584e+09
+ * time: 545.4657258987427
+    62     1.968884e+03     1.010752e+09
+ * time: 550.3180468082428
+    63     1.968861e+03     1.076897e+09
+ * time: 555.1964678764343
+    64     1.968861e+03     1.079474e+09
+ * time: 560.0524189472198
+    65     1.968594e+03     3.164901e+08
+ * time: 567.3100719451904
+    66     1.968591e+03     3.293008e+08
+ * time: 572.1552288532257
+    67     1.968560e+03     3.046517e+08
+ * time: 577.0345659255981
+    68     1.968469e+03     1.792256e+08
+ * time: 581.895035982132
+    69     1.968464e+03     1.789686e+08
+ * time: 589.2744598388672
+    70     1.968447e+03     1.604864e+08
+ * time: 594.1261949539185
+    71     1.968404e+03     1.688809e+08
+ * time: 599.0276758670807
+    72     1.968233e+03     9.036423e+07
+ * time: 606.3503999710083
+    73     1.968233e+03     8.975189e+07
+ * time: 613.6358768939972
+    74     1.968212e+03     9.411800e+07
+ * time: 618.514331817627
+    75     1.968186e+03     8.139224e+07
+ * time: 623.5763838291168
+    76     1.968075e+03     4.924710e+07
+ * time: 630.9127240180969
+    77     1.968069e+03     5.142733e+07
+ * time: 635.7941358089447
+    78     1.968049e+03     5.210224e+07
+ * time: 640.6560640335083
+    79     1.968045e+03     4.801575e+07
+ * time: 645.5279808044434
+    80     1.967959e+03     3.951718e+07
+ * time: 652.8039059638977
+
+Exiting inner optimizer with x = [0.9999876727385806, 0.9992401102365471, 0.8818347592412384, 0.9999999960636314, 0.9991831943531898, 0.9998743083866253, 0.41962918163690505, 0.5830257389002359, 0.25492938947355587]
+Current distance to box: 3.93637e-9
+Decreasing barrier term μ.
+
+Fminbox iteration 2
+-------------------
+Calling inner optimizer with mu = 0.000155554
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     1.958962e+03     1.053000e+04
+ * time: 1.0013580322265625e-5
+     1     1.958949e+03     3.946271e+04
+ * time: 4.8705830574035645
+     2     1.958886e+03     3.944664e+04
+ * time: 9.721495151519775
+     3     1.958505e+03     3.943028e+04
+ * time: 31.56018304824829
+     4     1.958361e+03     3.936038e+04
+ * time: 46.08171510696411
+     5     1.958361e+03     3.935577e+04
+ * time: 53.34740900993347
+     6     1.958354e+03     3.848558e+04
+ * time: 63.03839707374573
+     7     1.958350e+03     1.681388e+05
+ * time: 77.56994915008545
+     8     1.958293e+03     2.831518e+04
+ * time: 82.47117304801941
+     9     1.958042e+03     1.992332e+04
+ * time: 99.46089005470276
+    10     1.958016e+03     2.008028e+04
+ * time: 114.01176500320435
+    11     1.957791e+03     2.530363e+04
+ * time: 121.2787389755249
+    12     1.957573e+03     4.132751e+04
+ * time: 145.5446321964264
+    13     1.957553e+03     2.785225e+04
+ * time: 152.8285231590271
+    14     1.957534e+03     3.031769e+04
+ * time: 157.70637702941895
+    15     1.957462e+03     1.886294e+04
+ * time: 172.24852013587952
+    16     1.957454e+03     1.470146e+04
+ * time: 179.524964094162
+    17     1.957448e+03     1.228948e+04
+ * time: 184.3742961883545
+    18     1.957442e+03     1.218643e+04
+ * time: 194.10197114944458
+    19     1.957442e+03     7.308628e+03
+ * time: 201.36718320846558
+    20     1.957441e+03     4.954190e+03
+ * time: 208.69892001152039
+    21     1.957441e+03     5.127246e+03
+ * time: 213.53181409835815
+    22     1.957440e+03     5.903611e+03
+ * time: 223.24310517311096
+    23     1.957439e+03     5.909324e+03
+ * time: 230.51812314987183
+    24     1.957439e+03     4.792479e+03
+ * time: 237.7771451473236
+    25     1.957438e+03     1.938294e+03
+ * time: 242.6159701347351
+    26     1.957438e+03     3.947575e+03
+ * time: 249.874351978302
+    27     1.957438e+03     3.810565e+03
+ * time: 254.71912717819214
+    28     1.957437e+03     2.796775e+03
+ * time: 259.55195116996765
+    29     1.957437e+03     1.747475e+03
+ * time: 264.4040231704712
+    30     1.957437e+03     2.109506e+03
+ * time: 271.67399406433105
+    31     1.957437e+03     2.063058e+03
+ * time: 278.9079740047455
+    32     1.957437e+03     2.099718e+03
+ * time: 288.6359951496124
+    33     1.957437e+03     1.018228e+03
+ * time: 295.8763949871063
+    34     1.957437e+03     1.359298e+03
+ * time: 303.10721802711487
+    35     1.957437e+03     6.935459e+02
+ * time: 307.92658615112305
+    36     1.957437e+03     6.159498e+02
+ * time: 312.79136419296265
+    37     1.957437e+03     5.275409e+02
+ * time: 317.6284110546112
+    38     1.957437e+03     5.256861e+02
+ * time: 322.47641921043396
+    39     1.957437e+03     4.864366e+02
+ * time: 327.32662200927734
+    40     1.957437e+03     1.006071e+03
+ * time: 332.1594171524048
+    41     1.957437e+03     2.187496e+02
+ * time: 339.4030520915985
+    42     1.957437e+03     2.259682e+02
+ * time: 344.2416501045227
+    43     1.957437e+03     2.257034e+02
+ * time: 349.09528398513794
+    44     1.957437e+03     3.979474e+02
+ * time: 356.3285391330719
+    45     1.957437e+03     1.510618e+02
+ * time: 363.56825709342957
+    46     1.957437e+03     1.111909e+02
+ * time: 368.4146821498871
+    47     1.957437e+03     2.973689e+02
+ * time: 373.4350621700287
+    48     1.957437e+03     4.193786e+02
+ * time: 378.31210708618164
+    49     1.957437e+03     4.184891e+02
+ * time: 383.18426418304443
+    50     1.957437e+03     1.615946e+02
+ * time: 388.05395317077637
+    51     1.957437e+03     1.558928e+02
+ * time: 392.92900705337524
+    52     1.957437e+03     1.574067e+02
+ * time: 400.21607398986816
+    53     1.957437e+03     1.637132e+02
+ * time: 405.06542921066284
+    54     1.957437e+03     1.039674e+02
+ * time: 410.1284589767456
+    55     1.957437e+03     3.305033e+01
+ * time: 415.05851912498474
+    56     1.957437e+03     1.380861e+01
+ * time: 419.9160041809082
+    57     1.957437e+03     1.377585e+01
+ * time: 424.79099798202515
+    58     1.957437e+03     1.435240e+01
+ * time: 429.6507921218872
+    59     1.957437e+03     1.433034e+01
+ * time: 434.49626207351685
+    60     1.957437e+03     1.432976e+01
+ * time: 439.3433082103729
+    61     1.957437e+03     2.750512e+00
+ * time: 444.2629990577698
+    62     1.957437e+03     2.982933e+00
+ * time: 449.1292200088501
+    63     1.957437e+03     1.186964e+00
+ * time: 453.97163009643555
+    64     1.957437e+03     3.601716e-01
+ * time: 458.8060882091522
+    65     1.957437e+03     2.563902e-03
+ * time: 466.08491110801697
+    66     1.957437e+03     1.718827e-03
+ * time: 475.7462570667267
+    67     1.957437e+03     1.465422e-03
+ * time: 480.5816960334778
+    68     1.957437e+03     1.297072e-03
+ * time: 485.4299921989441
+    69     1.957437e+03     1.876171e-03
+ * time: 490.31580901145935
+    70     1.957437e+03     4.785820e-03
+ * time: 495.14952301979065
+    71     1.957437e+03     3.052703e-03
+ * time: 499.9868280887604
+    72     1.957437e+03     1.493806e-03
+ * time: 504.8526520729065
+    73     1.957437e+03     2.193415e-03
+ * time: 509.71438813209534
+    74     1.957437e+03     8.299459e-04
+ * time: 514.5536451339722
+    75     1.957437e+03     4.145486e-04
+ * time: 519.4030780792236
+    76     1.957437e+03     7.626391e-04
+ * time: 524.2488300800323
+    77     1.957437e+03     8.970058e-04
+ * time: 529.1033890247345
+    78     1.957437e+03     1.198671e-04
+ * time: 533.9438800811768
+    79     1.957437e+03     5.825719e-05
+ * time: 543.6492161750793
+    80     1.957437e+03     1.491594e-04
+ * time: 548.4827539920807
+
+Exiting inner optimizer with x = [0.9999999582563198, 0.9999984895082293, 0.9026063598487837, 0.9999981682983948, 0.9999993557505096, 0.9402986084410929, 0.0005630992463511693, 0.5770169896382555, 0.21955820654302508]
+Current distance to box: 4.17437e-8
+Decreasing barrier term μ.
+
+Fminbox iteration 3
+-------------------
+Calling inner optimizer with mu = 1.55554e-7
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     1.957426e+03     3.726419e+03
+ * time: 5.9604644775390625e-6
+     1     1.957425e+03     3.694183e+03
+ * time: 17.00953507423401
+     2     1.957425e+03     5.392499e+02
+ * time: 36.43192005157471
+     3     1.957425e+03     3.134886e+03
+ * time: 43.71750807762146
+     4     1.957425e+03     6.324111e+02
+ * time: 58.30169606208801
+     5     1.957425e+03     1.110668e+03
+ * time: 63.44646406173706
+     6     1.957425e+03     1.791250e+03
+ * time: 68.3033299446106
+     7     1.957425e+03     3.170102e+03
+ * time: 75.61123013496399
+     8     1.957425e+03     5.880821e+03
+ * time: 82.85600304603577
+     9     1.957425e+03     7.173063e+01
+ * time: 90.15376901626587
+    10     1.957425e+03     2.307859e+02
+ * time: 95.04726600646973
+    11     1.957425e+03     4.396893e+01
+ * time: 102.3214840888977
+    12     1.957425e+03     1.011863e+01
+ * time: 107.1440761089325
+    13     1.957425e+03     1.749432e+01
+ * time: 111.99718403816223
+    14     1.957425e+03     2.224884e+01
+ * time: 116.83369898796082
+    15     1.957425e+03     5.534219e+00
+ * time: 121.71079516410828
+    16     1.957425e+03     5.475699e+00
+ * time: 126.57394003868103
+    17     1.957425e+03     4.969185e+00
+ * time: 131.40677309036255
+    18     1.957425e+03     1.386560e+00
+ * time: 136.28445315361023
+    19     1.957425e+03     1.328537e+00
+ * time: 141.1308081150055
+    20     1.957425e+03     7.917599e-01
+ * time: 145.9761700630188
+    21     1.957425e+03     5.562604e-01
+ * time: 150.81352400779724
+    22     1.957425e+03     8.210204e-01
+ * time: 165.39296507835388
+    23     1.957425e+03     1.077397e-01
+ * time: 170.23252415657043
+    24     1.957425e+03     1.023625e-02
+ * time: 175.09880995750427
+    25     1.957425e+03     5.757429e-03
+ * time: 184.8475320339203
+    26     1.957425e+03     4.710319e-03
+ * time: 189.65475416183472
+    27     1.957425e+03     9.542848e-03
+ * time: 194.50932097434998
+    28     1.957425e+03     9.543017e-03
+ * time: 201.72261810302734
+    29     1.957425e+03     1.029336e-02
+ * time: 206.54041409492493
+    30     1.957425e+03     4.911017e-02
+ * time: 211.36916303634644
+    31     1.957425e+03     4.910978e-02
+ * time: 216.16128516197205
+    32     1.957425e+03     4.910997e-02
+ * time: 230.6076500415802
+    33     1.957425e+03     4.910989e-02
+ * time: 235.43093609809875
+    34     1.957425e+03     3.971140e-02
+ * time: 240.26322197914124
+    35     1.957425e+03     2.949961e-02
+ * time: 245.07837510108948
+    36     1.957425e+03     2.950065e-02
+ * time: 249.9077320098877
+    37     1.957425e+03     1.027154e-02
+ * time: 254.76647305488586
+    38     1.957425e+03     2.245332e-04
+ * time: 259.5840539932251
+    39     1.957425e+03     2.613267e-04
+ * time: 269.2043790817261
+    40     1.957425e+03     1.026841e-02
+ * time: 274.0486271381378
+    41     1.957425e+03     2.290480e-04
+ * time: 278.8876619338989
+    42     1.957425e+03     1.861203e-04
+ * time: 283.7103750705719
+    43     1.957425e+03     1.238674e-04
+ * time: 290.9709949493408
+    44     1.957425e+03     1.026396e-02
+ * time: 296.0015871524811
+    45     1.957425e+03     1.026460e-02
+ * time: 300.9245550632477
+    46     1.957425e+03     1.026388e-02
+ * time: 305.74059009552
+    47     1.957425e+03     1.026366e-02
+ * time: 317.8820810317993
+    48     1.957425e+03     1.026420e-02
+ * time: 322.7199261188507
+    49     1.957425e+03     1.747637e-04
+ * time: 327.57058000564575
+    50     1.957425e+03     1.520112e-04
+ * time: 332.4347360134125
+    51     1.957425e+03     1.521051e-04
+ * time: 337.28365111351013
+    52     1.957425e+03     1.520675e-04
+ * time: 344.508975982666
+    53     1.957425e+03     1.513159e-04
+ * time: 349.3428189754486
+    54     1.957425e+03     1.951714e-04
+ * time: 354.14397406578064
+    55     1.957425e+03     1.217577e-04
+ * time: 358.97402596473694
+    56     1.957425e+03     1.217201e-04
+ * time: 375.86632800102234
+    57     1.957425e+03     1.218140e-04
+ * time: 385.506963968277
+    58     1.957425e+03     1.220205e-04
+ * time: 395.2051329612732
+    59     1.957425e+03     6.344848e-01
+ * time: 402.47126293182373
+    60     1.957425e+03     1.225462e-04
+ * time: 407.27769804000854
+    61     1.957425e+03     1.223960e-04
+ * time: 412.09321904182434
+    62     1.957425e+03     1.221144e-04
+ * time: 416.9247131347656
+    63     1.957425e+03     1.223209e-04
+ * time: 424.19501304626465
+    64     1.957425e+03     1.219079e-04
+ * time: 431.4457311630249
+    65     1.957425e+03     1.220017e-04
+ * time: 436.30017709732056
+    66     1.957425e+03     1.221519e-04
+ * time: 441.1537039279938
+    67     1.957425e+03     1.221707e-04
+ * time: 450.81816601753235
+    68     1.957425e+03     1.220768e-04
+ * time: 465.3380661010742
+    69     1.957425e+03     1.220205e-04
+ * time: 470.20023012161255
+    70     1.957425e+03     1.221144e-04
+ * time: 479.8433439731598
+    71     1.957425e+03     1.220393e-04
+ * time: 489.7075340747833
+    72     1.957425e+03     1.221895e-04
+ * time: 494.55814504623413
+    73     1.957425e+03     2.915286e-02
+ * time: 501.8073310852051
+    74     1.957425e+03     2.915288e-02
+ * time: 506.61986207962036
+    75     1.957425e+03     2.915254e-02
+ * time: 511.48055505752563
+    76     1.957425e+03     2.915288e-02
+ * time: 525.9670660495758
+    77     1.957425e+03     2.915290e-02
+ * time: 538.0722219944
+    78     1.957425e+03     2.915268e-02
+ * time: 542.9204211235046
+    79     1.957425e+03     2.915294e-02
+ * time: 552.5847570896149
+    80     1.957425e+03     1.530601e-04
+ * time: 557.441164970398
+
+Exiting inner optimizer with x = [0.9999999999579726, 0.9999999981153422, 0.9026022549139954, 0.9999999976152325, 0.9999999992872884, 0.940309545094443, 1.05531080043172e-5, 0.577018043268572, 0.21956521454303757]
+Current distance to box: 4.20274e-11
+Decreasing barrier term μ.
+
+Fminbox iteration 4
+-------------------
+Calling inner optimizer with mu = 1.55554e-10
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     1.957425e+03     3.701264e+03
+ * time: 6.198883056640625e-6
+     1     1.957425e+03     3.599396e+02
+ * time: 31.408388137817383
+     2     1.957425e+03     5.062992e+02
+ * time: 36.22730016708374
+     3     1.957425e+03     5.062993e+02
+ * time: 41.061498165130615
+     4     1.957425e+03     6.909556e+02
+ * time: 45.92137408256531
+     5     1.957425e+03     8.184678e+02
+ * time: 50.754449129104614
+     6     1.957425e+03     6.231690e+02
+ * time: 55.583144187927246
+     7     1.957425e+03     6.231739e+02
+ * time: 62.883594036102295
+     8     1.957425e+03     3.249391e+02
+ * time: 67.71623110771179
+     9     1.957425e+03     5.508885e+01
+ * time: 72.54890298843384
+    10     1.957425e+03     5.401266e+00
+ * time: 77.38795614242554
+    11     1.957425e+03     5.401312e+00
+ * time: 82.21144819259644
+    12     1.957425e+03     5.401270e+00
+ * time: 87.0375599861145
+    13     1.957425e+03     5.401269e+00
+ * time: 96.71219301223755
+    14     1.957425e+03     5.401270e+00
+ * time: 111.22300505638123
+    15     1.957425e+03     5.401268e+00
+ * time: 120.93044114112854
+    16     1.957425e+03     5.401265e+00
+ * time: 125.91747713088989
+    17     1.957425e+03     5.401264e+00
+ * time: 130.78073406219482
+    18     1.957425e+03     5.401264e+00
+ * time: 142.94325804710388
+
+Exiting inner optimizer with x = [0.999999999999958, 0.9999999999981141, 0.902602250488954, 0.9999999999976134, 0.9999999999992869, 0.9403095570611785, 1.0000553314811925e-5, 0.5770180443877843, 0.21956522246283772]
+Current distance to box: 4.19664e-14
+Decreasing barrier term μ.
+
+Fminbox iteration 5
+-------------------
+Calling inner optimizer with mu = 1.55554e-13
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     1.957425e+03     3.701238e+03
+ * time: 3.790855407714844e-5
+     1     1.957425e+03     2.300113e+03
+ * time: 29.29631805419922
+     2     1.957425e+03     2.300113e+03
+ * time: 36.697115898132324
+     3     1.957425e+03     2.300124e+03
+ * time: 41.68222093582153
+     4     1.957425e+03     2.300126e+03
+ * time: 46.631577014923096
+     5     1.957425e+03     2.300128e+03
+ * time: 51.56638503074646
+     6     1.957425e+03     2.300128e+03
+ * time: 56.4735689163208
+     7     1.957425e+03     2.300128e+03
+ * time: 240.6483919620514
+     8     1.957425e+03     2.300128e+03
+ * time: 409.30032086372375
+     9     1.957425e+03     2.300128e+03
+ * time: 558.3781669139862
+    10     1.957425e+03     2.300128e+03
+ * time: 734.0952038764954
+    11     1.957425e+03     2.300128e+03
+ * time: 905.6645159721375
+    12     1.957425e+03     2.300128e+03
+ * time: 1071.6289360523224
+    13     1.957425e+03     2.300128e+03
+ * time: 1242.4913239479065
+    14     1.957425e+03     2.300128e+03
+ * time: 1386.4917838573456
+    15     1.957425e+03     2.300128e+03
+ * time: 1547.7389888763428
+    16     1.957425e+03     2.300128e+03
+ * time: 1692.0249240398407
+    17     1.957425e+03     2.300128e+03
+ * time: 1853.7904288768768
+    18     1.957425e+03     2.300128e+03
+ * time: 1984.0858340263367
+    19     1.957425e+03     2.300128e+03
+ * time: 2138.5096819400787
+    20     1.957425e+03     2.300128e+03
+ * time: 2297.3927109241486
+    21     1.957425e+03     2.300128e+03
+ * time: 2461.0619008541107
+    22     1.957425e+03     2.300128e+03
+ * time: 2648.9224140644073
+    23     1.957425e+03     2.300128e+03
+ * time: 2781.175232887268
+    24     1.957425e+03     2.300128e+03
+ * time: 2932.6216909885406
+    25     1.957425e+03     2.300128e+03
+ * time: 3086.7418279647827
+    26     1.957425e+03     2.300128e+03
+ * time: 3183.0959498882294
+    27     1.957425e+03     2.300128e+03
+ * time: 3327.2471539974213
+    28     1.957425e+03     2.300128e+03
+ * time: 3466.643192052841
+    29     1.957425e+03     2.300128e+03
+ * time: 3622.4285418987274
+    30     1.957425e+03     2.300128e+03
+ * time: 3780.5373108386993
+    31     1.957425e+03     2.300128e+03
+ * time: 3948.5904998779297
+    32     1.957425e+03     2.300128e+03
+ * time: 4118.993093967438
+    33     1.957425e+03     2.300128e+03
+ * time: 4257.768444061279
+    34     1.957425e+03     2.300128e+03
+ * time: 4396.172090053558
+    35     1.957425e+03     2.300128e+03
+ * time: 4542.149689912796
+    36     1.957425e+03     2.300128e+03
+ * time: 4685.424743890762
+    37     1.957425e+03     2.300128e+03
+ * time: 4864.754607915878
+    38     1.957425e+03     2.300128e+03
+ * time: 5027.078321933746
+    39     1.957425e+03     2.300128e+03
+ * time: 5175.27494597435
+    40     1.957425e+03     2.300128e+03
+ * time: 5325.792821884155
+    41     1.957425e+03     2.300128e+03
+ * time: 5483.523086071014
+    42     1.957425e+03     2.300128e+03
+ * time: 5636.699635982513
+    43     1.957425e+03     2.300128e+03
+ * time: 5738.0925579071045
+    44     1.957425e+03     2.300128e+03
+ * time: 5897.281822919846
+    45     1.957425e+03     2.300128e+03
+ * time: 6032.076081991196
+    46     1.957425e+03     2.300128e+03
+ * time: 6202.626003980637
+    47     1.957425e+03     2.300128e+03
+ * time: 6358.540827035904
+    48     1.957425e+03     2.300128e+03
+ * time: 6474.353420972824
+    49     1.957425e+03     2.300128e+03
+ * time: 6608.97728395462
+
+Exiting inner optimizer with x = [0.9999999999999999, 0.9999999999999982, 0.9026022505544505, 0.9999999999999972, 0.9999999999999997, 0.9403095559369772, 1.0000000491622221e-5, 0.5770180442826711, 0.21956522169921389]
+Current distance to box: 1.11022e-16
+Decreasing barrier term μ.
+
+Fminbox iteration 6
+-------------------
+Calling inner optimizer with mu = 1.55554e-16
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     1.957425e+03     3.701238e+03
+ * time: 5.0067901611328125e-6
+     1     1.957425e+03     3.699837e+03
+ * time: 4.859237909317017
+     2     1.957425e+03     3.699837e+03
+ * time: 180.6524510383606
+     3     1.957425e+03     3.699837e+03
+ * time: 365.83551502227783
+     4     1.957425e+03     3.699837e+03
+ * time: 557.8903670310974
+     5     1.957425e+03     3.699837e+03
+ * time: 726.0775649547577
+     6     1.957425e+03     3.699837e+03
+ * time: 912.684417963028
+     7     1.957425e+03     3.699837e+03
+ * time: 1082.6577298641205
+     8     1.957425e+03     3.699837e+03
+ * time: 1240.7504498958588
+     9     1.957425e+03     3.699837e+03
+ * time: 1386.8835990428925
+    10     1.957425e+03     3.699837e+03
+ * time: 1566.7657120227814
+    11     1.957425e+03     3.699837e+03
+ * time: 1758.5329689979553
+    12     1.957425e+03     3.699837e+03
+ * time: 1938.0114650726318
+    13     1.957425e+03     3.699837e+03
+ * time: 2124.706704854965
+    14     1.957425e+03     3.699837e+03
+ * time: 2298.9556930065155
+    15     1.957425e+03     3.699837e+03
+ * time: 2477.3889949321747
+    16     1.957425e+03     3.699837e+03
+ * time: 2630.0433418750763
+    17     1.957425e+03     3.699837e+03
+ * time: 2780.460942029953
+    18     1.957425e+03     3.699837e+03
+ * time: 2891.729233980179
+    19     1.957425e+03     3.699837e+03
+ * time: 3030.595377922058
+    20     1.957425e+03     3.699837e+03
+ * time: 3183.7345309257507
+    21     1.957425e+03     3.699837e+03
+ * time: 3325.68829703331
+    22     1.957425e+03     3.699837e+03
+ * time: 3510.087455034256
+    23     1.957425e+03     3.699837e+03
+ * time: 3656.6559998989105
+    24     1.957425e+03     3.699837e+03
+ * time: 3792.041100025177
+    25     1.957425e+03     3.699837e+03
+ * time: 3926.9996509552
+    26     1.957425e+03     3.699837e+03
+ * time: 4053.446678876877
+    27     1.957425e+03     3.699837e+03
+ * time: 4178.054123878479
+    28     1.957425e+03     3.699837e+03
+ * time: 4302.4004900455475
+    29     1.957425e+03     3.699837e+03
+ * time: 4417.724719047546
+    30     1.957425e+03     3.699837e+03
+ * time: 4521.90040397644
+    31     1.957425e+03     3.699837e+03
+ * time: 4659.938659906387
+    32     1.957425e+03     3.699837e+03
+ * time: 4797.667229890823
+
+Exiting inner optimizer with x = [0.9999999999999999, 0.9999999999999999, 0.9026022510657854, 0.9999999999999998, 0.9999999999999996, 0.9403095539809114, 1.00000000979411e-5, 0.5770180436574696, 0.2195652210684265]
+Current distance to box: 1.11022e-16
+Decreasing barrier term μ.
+
+Fminbox iteration 7
+-------------------
+Calling inner optimizer with mu = 1.55554e-19
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     1.957425e+03     3.701238e+03
+ * time: 5.9604644775390625e-6
+     1     1.957425e+03     3.701237e+03
+ * time: 144.33709001541138
+     2     1.957425e+03     3.701237e+03
+ * time: 282.425607919693
+     3     1.957425e+03     3.701237e+03
+ * time: 431.1603500843048
+     4     1.957425e+03     3.701237e+03
+ * time: 613.4734649658203
+     5     1.957425e+03     3.701237e+03
+ * time: 776.504702091217
+     6     1.957425e+03     3.701237e+03
+ * time: 932.4105849266052
+     7     1.957425e+03     3.701237e+03
+ * time: 1089.0513319969177
+     8     1.957425e+03     3.701237e+03
+ * time: 1243.0752000808716
+     9     1.957425e+03     3.701237e+03
+ * time: 1406.004725933075
+    10     1.957425e+03     3.701237e+03
+ * time: 1569.1673820018768
+    11     1.957425e+03     3.701237e+03
+ * time: 1695.9460608959198
+    12     1.957425e+03     3.701237e+03
+ * time: 1829.4341690540314
+    13     1.957425e+03     3.701237e+03
+ * time: 1976.6330370903015
+    14     1.957425e+03     3.701237e+03
+ * time: 2122.5174610614777
+    15     1.957425e+03     3.701237e+03
+ * time: 2256.9163739681244
+    16     1.957425e+03     3.701237e+03
+ * time: 2375.959058046341
+    17     1.957425e+03     3.701237e+03
+ * time: 2506.8704419136047
+    18     1.957425e+03     3.701237e+03
+ * time: 2631.668471097946
+    19     1.957425e+03     3.701237e+03
+ * time: 2738.586783885956
+    20     1.957425e+03     3.701237e+03
+ * time: 2888.4921219348907
+    21     1.957425e+03     3.701237e+03
+ * time: 3044.6225810050964
+    22     1.957425e+03     3.701237e+03
+ * time: 3160.251538991928
+
+Exiting inner optimizer with x = [0.9999999999999999, 0.9999999999999999, 0.9026022510689864, 0.9999999999999999, 0.9999999999999998, 0.9403095539891746, 1.0000000064636392e-5, 0.5770180436649333, 0.21956522105747378]
+Current distance to box: 1.11022e-16
+Decreasing barrier term μ.
+
+Fminbox iteration 8
+-------------------
+Calling inner optimizer with mu = 1.55554e-22
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     1.957425e+03     3.701238e+03
+ * time: 2.002716064453125e-5
+     1     1.957425e+03     3.701238e+03
+ * time: 156.24008703231812
+     2     1.957425e+03     3.701238e+03
+ * time: 278.7345938682556
+     3     1.957425e+03     3.701238e+03
+ * time: 410.1045479774475
+     4     1.957425e+03     3.701238e+03
+ * time: 560.0054450035095
+     5     1.957425e+03     3.701238e+03
+ * time: 689.5355000495911
+     6     1.957425e+03     3.701238e+03
+ * time: 817.1438438892365
+     7     1.957425e+03     3.701238e+03
+ * time: 965.1448750495911
+     8     1.957425e+03     3.701238e+03
+ * time: 1088.1744270324707
+
+Exiting inner optimizer with x = [0.9999999999999999, 0.9999999999999999, 0.9026022510689862, 0.9999999999999999, 0.9999999999999998, 0.9403095539891934, 1.0000000057602637e-5, 0.5770180436649379, 0.21956522105746495]
+Current distance to box: 1.11022e-16
+Decreasing barrier term μ.
+
+Fminbox iteration 9
+-------------------
+Calling inner optimizer with mu = 1.55554e-25
+
+(numbers below include barrier contribution)
+Iter     Function value   Gradient norm 
+     0     1.957425e+03     3.701238e+03
+ * time: 5.0067901611328125e-6
+     1     1.957425e+03     3.701238e+03
+ * time: 174.33408308029175
+     2     1.957425e+03     3.701238e+03
+ * time: 346.72987389564514
+
+Exiting inner optimizer with x = [0.9999999999999999, 0.9999999999999999, 0.9026022510689862, 0.9999999999999999, 0.9999999999999998, 0.9403095539891934, 1.0000000062648699e-5, 0.5770180436649379, 0.21956522105746495]
+Current distance to box: 1.11022e-16
+Decreasing barrier term μ.
+
+Λ,δ,γA * Status: success
+
+ * Candidate solution
+    Final objective value:     1.957425e+03
+
+ * Found with
+    Algorithm:     Fminbox with L-BFGS
+
+ * Convergence measures
+    |x - x'|               = 5.05e-15 ≰ 0.0e+00
+    |x - x'|/|x'|          = 2.05e-15 ≰ 0.0e+00
+    |f(x) - f(x')|         = 0.00e+00 ≤ 0.0e+00
+    |f(x) - f(x')|/|f(x')| = 0.00e+00 ≤ 0.0e+00
+    |g(x)|                 = 1.86e-05 ≰ 1.0e-08
+
+ * Work counters
+    Seconds run:   18012  (vs limit Inf)
+    Iterations:    9
+    f(x) calls:    7709
+    ∇f(x) calls:   7709
+
+9-element Vector{Float64}:
+ 0.9999999999999999
+ 0.9999999999999999
+ 0.9026022510689862
+ 0.9999999999999999
+ 0.9999999999999998
+ 0.9403095539891934
+ 1.0000000062648699e-5
+ 0.5770180436649379
+pure virtual method called
+terminate called without an active exception
+
+signal (6): Aborted
+in expression starting at none:0
+gsignal at /lib64/libc.so.6 (unknown line)
+abort at /lib64/libc.so.6 (unknown line)
+__verbose_terminate_handler at /workspace/srcdir/gcc-12.1.0/libstdc++-v3/libsupc++/vterminate.cc:95
+__terminate at /workspace/srcdir/gcc-12.1.0/libstdc++-v3/libsupc++/eh_terminate.cc:48
+terminate at /workspace/srcdir/gcc-12.1.0/libstdc++-v3/libsupc++/eh_terminate.cc:58
+__cxa_pure_virtual at /workspace/srcdir/gcc-12.1.0/libstdc++-v3/libsupc++/pure.cc:50
+_ZN4llvm11raw_ostream5writeEPKcm at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm11LLVMContext8diagnoseERKNS_14DiagnosticInfoE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZNSt17_Function_handlerIFvRKN4llvm12SMDiagnosticEbRKNS0_9SourceMgrERSt6vectorIPKNS0_6MDNodeESaISA_EEEZNS0_28MachineModuleInfoWrapperPass16doInitializationERNS0_6ModuleEEUlS3_bS6_SD_E_E9_M_invokeERKSt9_Any_dataS3_ObS6_SD_ at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm9MCContext8diagnoseERKNS_12SMDiagnosticE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN12_GLOBAL__N_19AsmParser11DiagHandlerERKN4llvm12SMDiagnosticEPv at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZNK4llvm9SourceMgr12PrintMessageERNS_11raw_ostreamENS_5SMLocENS0_8DiagKindERKNS_5TwineENS_8ArrayRefINS_7SMRangeEEENS8_INS_7SMFixItEEEb at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZNK4llvm9SourceMgr12PrintMessageENS_5SMLocENS0_8DiagKindERKNS_5TwineENS_8ArrayRefINS_7SMRangeEEENS6_INS_7SMFixItEEEb at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN12_GLOBAL__N_19AsmParser3RunEbb at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZNK4llvm10AsmPrinter13emitInlineAsmENS_9StringRefERKNS_15MCSubtargetInfoERKNS_15MCTargetOptionsEPKNS_6MDNodeENS_9InlineAsm10AsmDialectE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZNK4llvm10AsmPrinter13emitInlineAsmEPKNS_12MachineInstrE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm10AsmPrinter16emitFunctionBodyEv at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm13X86AsmPrinter20runOnMachineFunctionERNS_15MachineFunctionE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm19MachineFunctionPass13runOnFunctionERNS_8FunctionE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm13FPPassManager13runOnFunctionERNS_8FunctionE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm13FPPassManager11runOnModuleERNS_6ModuleE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm6legacy15PassManagerImpl3runERNS_6ModuleE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+operator() at /appl/soft/math/julia/julia-1.8.5/src/jitlayers.cpp:528
+_ZN4llvm3orc14IRCompileLayer4emitESt10unique_ptrINS0_29MaterializationResponsibilityESt14default_deleteIS3_EENS0_16ThreadSafeModuleE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc31BasicIRLayerMaterializationUnit11materializeESt10unique_ptrINS0_29MaterializationResponsibilityESt14default_deleteIS3_EE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc19MaterializationTask3runEv at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm6detail18UniqueFunctionBaseIvJSt10unique_ptrINS_3orc4TaskESt14default_deleteIS4_EEEE8CallImplIPFvS7_EEEvPvRS7_ at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc16ExecutionSession22dispatchOutstandingMUsEv at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc16ExecutionSession17OL_completeLookupESt10unique_ptrINS0_21InProgressLookupStateESt14default_deleteIS3_EESt10shared_ptrINS0_23AsynchronousSymbolQueryEESt8functionIFvRKNS_8DenseMapIPNS0_8JITDylibENS_8DenseSetINS0_15SymbolStringPtrENS_12DenseMapInfoISF_EEEENSG_ISD_EENS_6detail12DenseMapPairISD_SI_EEEEEE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc25InProgressFullLookupState8completeESt10unique_ptrINS0_21InProgressLookupStateESt14default_deleteIS3_EE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc16ExecutionSession19OL_applyQueryPhase1ESt10unique_ptrINS0_21InProgressLookupStateESt14default_deleteIS3_EENS_5ErrorE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc16ExecutionSession6lookupENS0_10LookupKindERKSt6vectorISt4pairIPNS0_8JITDylibENS0_19JITDylibLookupFlagsEESaIS8_EENS0_15SymbolLookupSetENS0_11SymbolStateENS_15unique_functionIFvNS_8ExpectedINS_8DenseMapINS0_15SymbolStringPtrENS_18JITEvaluatedSymbolENS_12DenseMapInfoISI_EENS_6detail12DenseMapPairISI_SJ_EEEEEEEEESt8functionIFvRKNSH_IS6_NS_8DenseSetISI_SL_EENSK_IS6_EENSN_IS6_SV_EEEEEE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc16ExecutionSession6lookupERKSt6vectorISt4pairIPNS0_8JITDylibENS0_19JITDylibLookupFlagsEESaIS7_EERKNS0_15SymbolLookupSetENS0_10LookupKindENS0_11SymbolStateESt8functionIFvRKNS_8DenseMapIS5_NS_8DenseSetINS0_15SymbolStringPtrENS_12DenseMapInfoISK_EEEENSL_IS5_EENS_6detail12DenseMapPairIS5_SN_EEEEEE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc16ExecutionSession6lookupERKSt6vectorISt4pairIPNS0_8JITDylibENS0_19JITDylibLookupFlagsEESaIS7_EENS0_15SymbolStringPtrENS0_11SymbolStateE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc16ExecutionSession6lookupENS_8ArrayRefIPNS0_8JITDylibEEENS0_15SymbolStringPtrENS0_11SymbolStateE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+_ZN4llvm3orc16ExecutionSession6lookupENS_8ArrayRefIPNS0_8JITDylibEEENS_9StringRefENS0_11SymbolStateE at /appl/soft/math/julia/julia-1.8.5/usr/lib/libLLVM-13jl.so (unknown line)
+addModule at /appl/soft/math/julia/julia-1.8.5/src/jitlayers.cpp:968
+jl_add_to_ee at /appl/soft/math/julia/julia-1.8.5/src/jitlayers.cpp:1261 [inlined]
+jl_add_to_ee at /appl/soft/math/julia/julia-1.8.5/src/jitlayers.cpp:1305
+jl_add_to_ee at /appl/soft/math/julia/julia-1.8.5/src/jitlayers.cpp:1327 [inlined]
+_jl_compile_codeinst at /appl/soft/math/julia/julia-1.8.5/src/jitlayers.cpp:149
+jl_generate_fptr_impl at /appl/soft/math/julia/julia-1.8.5/src/jitlayers.cpp:332
+ 0.21956522105746495

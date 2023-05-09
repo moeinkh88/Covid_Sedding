@@ -235,6 +235,15 @@ mdS0IA0P0=vec(median(reduce(vcat,BB[Ind][1:300]')[:,[1,15,16]],dims=1));mdIC=[md
 OptIC=[Candidate[i][1], BBf[indErrf][9], Candidate[i][15], Candidate[i][16]]
 
 ##
+function rep_num1(PP)
+    Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA=PP
+    ωe=ψ+μ+ω
+    ωia=μ+σ+γA
+    ωis=μ+σ+γS
+ R = Λ*ω/μ*((β1*δ*ηS)/(μp*ωe*ωis)+(β2*δ)/(ωe*ωis)+(β1*(1-δ)*ηA)/(μp*ωe*ωia)+(β2*(1-δ))/(ωe*ωia))
+ return R
+end
+
 parameters=["μp","ϕ1","ϕ2","β1","β2",
 			"δ","ψ","ω","σ","γS","γA","ηS","ηA"]
 
@@ -361,7 +370,16 @@ end
 
 # boxplot(repeat(["μ" "Λ" "μp" "ϕ1" "ϕ2" "β1" "β2" "δ" "ψ" "ω" "σ" "γS" "γA" "ηS" "ηA" "R0"],outer=300),sign.(hcat(Sens,R0)).*log10.(abs.(hcat(Sens,R0)).+1), legend=:false, #outliers=false,
 # 	title = "(c) Paramter values for top 300 fits", titlefont = font(9) , titleloc = :left, color=:white, bar_width = 0.9,marker=(0.2, :black, stroke(0)), ylabel="sign(x) * log(|x| + 1)")
-boxplot(repeat(["μ" "Λ" "μp" "ϕ1" "ϕ2" "β1" "β2" "δ" "ψ" "ω" "σ" "γS" "γA" "ηS" "ηA"],outer=300),sign.(Sens).*log10.(abs.(Sens).+1), legend=:false, #outliers=false,
-		title = "Paramter sensitivity and R0 for top 300 fits", color=:white, bar_width = 0.9,marker=(0.2, :black, stroke(0)), ylabel="sign(x) * log(|x| + 1)")
-plboxSen=boxplot(repeat("R0",outer=300),sign.(hcat(Sens,R0)).*log10.(abs.(hcat(Sens,R0)).+1), legend=:false, #outliers=false,
-			title = "(c) Paramter values for top 300 fits", titlefont = font(9) , titleloc = :left, color=:white, bar_width = 0.9,marker=(0.2, :black, stroke(0)), ylabel="sign(x) * log(|x| + 1)")
+# plboxSen=boxplot(repeat(["μ" "Λ" "μp" "ϕ1" "ϕ2" "β1" "β2" "δ" "ψ" "ω" "σ" "γS" "γA" "ηS" "ηA"],outer=300),sign.(Sens).*log10.(abs.(Sens).+1), legend=:false, outliers=false,
+# 		title = "(a) Paramter sensitivity for top 300 fits",titlefont = font(10) , titleloc = :left, color=:white,marker=(0.2, :black, stroke(0)), ylabel="sign(x) * log10(|x| + 1)")
+# plboxR0=violin(repeat(["R0"],outer=300),sign.(R0).*log10.(abs.(R0).+1), legend=:false,# outliers=false,
+# 			 title = "(b) Density of R0",titlefont = font(10) , titleloc = :left, color=:black)
+plboxSen=boxplot(repeat(["μ" "Λ" "μp" "ϕ1" "ϕ2" "β1" "β2" "δ" "ψ" "ω" "σ" "γS" "γA" "ηS" "ηA"],outer=300),Sens, legend=:false, outliers=false,
+	title = "(a) Paramter sensitivity for top 300 fits",titlefont = font(10) , titleloc = :left, color=:white,marker=(0.2, :black, stroke(0)))
+plboxR0=boxplot(repeat(["R0"],outer=300),R0, legend=:false,# outliers=false,
+	 title = "(b) Density of R0",titlefont = font(10) , titleloc = :left, color=:white, marker=(0.2, :black, stroke(0)),bar_width = .8, xaxis = ((0, 1), 0:1), yaxis=:log)
+
+L=@layout[b b{0.2w}]
+PlotSenR0=plot(plboxSen,plboxR0, layout =L, size=(650,300))#, guidefont=font(8), legendfont=font(8))
+
+savefig(PlotSenR0,"PlotSenR0.svg")

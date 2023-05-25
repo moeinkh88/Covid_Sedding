@@ -197,6 +197,49 @@ i=Int(BBf[indErrf][1])
 	plFDE=plot!(Pred1, lw=3, color=:dodgerblue1,formatter=:plain)
 
 Errfbest=rmsd(C, x1[1:20:end,4])
+
+
+##
+bxSEIRPN=zeros(13,7,length(Candidate))
+for ii in 1:length(Candidate)
+	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA = Candidate[ii][2:14]
+	p1= [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA]
+	S0=Candidate[ii][1]
+	IA0=Candidate[ii][15]
+	P0=Candidate[ii][16]
+	E0=Candidate[ii][17]
+	N0=S0+E0+IA0+IS0+R0
+	X0=[S0,E0,IA0,IS0,R0,P0,D0,N0]
+
+	prob = ODEProblem(F, X0, tSpan, p1)
+	sol = solve(prob, alg_hints=[:stiff]; saveat=15)
+		bxSEIRPN[:,:,ii]=reduce(vcat,sol.u')[:,[1,2,3,4,5,6,8]]
+end
+bxSEIRPN1=zeros(12,7,length(BBf))
+for ii in 1:length(BBf)
+	i=Int(BBf[ii][1])
+	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA = Candidate[i][2:14]
+	par= [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA]
+	S0=Candidate[i][1]
+	IA0=Candidate[i][15]
+	P0=Candidate[i][16]
+	E0=BBf[ii][9]
+	N0=S0+E0+IA0+IS0+R0
+	X0=[S0,E0,IA0,IS0,R0,P0,D0,N0]
+
+	Order[1:6]=BBf[ii][2:7]
+	Order[8]=BBf[ii][8]
+
+	_, x1 = FDEsolver(Ff, [0,length(C)], X0, Order, par, h=.05, nc=4)
+	bxSEIRPN1[:,:,ii]=x1[1:15*20:end,[1,2,3,4,5,6,8]]
+end
+
+violin(repeat(["1" "2" "3" "4" "5" "6" "7" "8" "9" "10" "11" "12" "13"],outer=300),bxSEIRPN[:,6,:]', legend=:false,
+	title = "(c) Paramter values for top 300 fits", titlefont = font(9) , titleloc = :left,side = :left, color=:yellow1, bar_width = 0.9,marker=(0.2, :black, stroke(0))
+	)
+	violin!(repeat(["1" "2" "3" "4" "5" "6" "7" "8" "9" "10" "11" "12" "13"],outer=300),bxSEIRPN1[:,6,:]', legend=:false,
+		title = "(c) Paramter values for top 300 fits", titlefont = font(9) , titleloc = :left,side = :right, color=:orange1, bar_width = 0.9,marker=(0.2, :orange, stroke(0))
+		)
 ##
 mean(Err[Ind][1:300])
 std(Err[Ind][1:300])
@@ -235,13 +278,12 @@ mdS0IA0P0=vec(median(reduce(vcat,BB[Ind][1:300]')[:,[1,15,16]],dims=1));mdIC=[md
 OptIC=[Candidate[i][1], BBf[indErrf][9], Candidate[i][15], Candidate[i][16]]
 
 ##
-N=mean(reduce(vcat,sol.u')[:,8])
 function rep_num1(PP)
     μ,Λ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA=PP
     ωe=ψ+μ+ω
     ωia=μ+σ+γA
     ωis=μ+σ+γS
- R = Λ*N*ω/μ*((β1*δ*ηS)/(μp*ωe*ωis)+(β2*δ)/(ωe*ωis)+(β1*(1-δ)*ηA)/(μp*ωe*ωia)+(β2*(1-δ))/(ωe*ωia))
+ R = Λ*ω/μ*((β1*δ*ηS)/(μp*ωe*ωis)+(β2*δ)/(ωe*ωis)+(β1*(1-δ)*ηA)/(μp*ωe*ωia)+(β2*(1-δ))/(ωe*ωia))
  return R
 end
 
@@ -309,13 +351,12 @@ savefig(plRMSD,"plRMSD.svg")
 savefig(Plotall,"plAll.svg")
 
 ## sensitivity
-N=mean(reduce(vcat,sol.u')[:,8])/length(C)
 function rep_num1(PP)
     μ,Λ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA=PP
     ωe=ψ+μ+ω
     ωia=μ+σ+γA
     ωis=μ+σ+γS
- R = Λ*N*ω/μ*((β1*δ*ηS)/(μp*ωe*ωis)+(β2*δ)/(ωe*ωis)+(β1*(1-δ)*ηA)/(μp*ωe*ωia)+(β2*(1-δ))/(ωe*ωia))
+ R = Λ*ω/μ*((β1*δ*ηS)/(μp*ωe*ωis)+(β2*δ)/(ωe*ωis)+(β1*(1-δ)*ηA)/(μp*ωe*ωia)+(β2*(1-δ))/(ωe*ωia))
  return R
 end
 

@@ -27,6 +27,7 @@ function  F(dx, x, par, t)
 
     Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA=par
     S,E,IA,IS,R,P,D,N=x
+    P=0
 
     dx[1]= Λ*N - β1*S*P/(1+ϕ1*P) - β2*S*(IA + IS)/(1+ϕ2*(IA+IS)) + ψ*E - µ*S
     dx[2]= β1*S*P/(1+ϕ1*P)+β2*S*(IA+IS)/(1+ϕ2*(IA+IS)) - ψ*E - μ*E - ω*E
@@ -44,6 +45,7 @@ function  Ff(t, x, par)
 
     Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA=par
     S,E,IA,IS,R,P,D,N=x
+	P=0
 
     dS= Λ*N - β1*S*P/(1+ϕ1*P) - β2*S*(IA + IS)/(1+ϕ2*(IA+IS)) + ψ*E - µ*S
     dE= β1*S*P/(1+ϕ1*P)+β2*S*(IA+IS)/(1+ϕ2*(IA+IS)) - ψ*E - μ*E - ω*E
@@ -118,7 +120,7 @@ for ii in 1:length(Candidate)
 	prob = ODEProblem(F, X0, tSpan, p1)
 	sol = solve(prob, alg_hints=[:stiff]; saveat=1)
 		Pred1=reduce(vcat,sol.u')[:,4]
-		plot!(Pred1[:,1]; color="yellow1")
+		plot!(Pred1[:,1]; color="#BBBBBB")
 end
 scatter!(C, color=:gray25,markerstrokewidth=0,
 	title = "(a) Fitting paramters of the ODE model" , titleloc = :left,titlefont = font(9),ylabel="Daily new confirmed cases (South Africa)", xrotation=20)
@@ -235,13 +237,12 @@ mdS0IA0P0=vec(median(reduce(vcat,BB[Ind][1:300]')[:,[1,15,16]],dims=1));mdIC=[md
 OptIC=[Candidate[i][1], BBf[indErrf][9], Candidate[i][15], Candidate[i][16]]
 
 ##
-N=mean(reduce(vcat,sol.u')[:,8])
 function rep_num1(PP)
     μ,Λ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA=PP
     ωe=ψ+μ+ω
     ωia=μ+σ+γA
     ωis=μ+σ+γS
- R = Λ*N*ω/μ*((β1*δ*ηS)/(μp*ωe*ωis)+(β2*δ)/(ωe*ωis)+(β1*(1-δ)*ηA)/(μp*ωe*ωia)+(β2*(1-δ))/(ωe*ωia))
+ R = Λ*ω/μ*((β1*δ*ηS)/(μp*ωe*ωis)+(β2*δ)/(ωe*ωis)+(β1*(1-δ)*ηA)/(μp*ωe*ωia)+(β2*(1-δ))/(ωe*ωia))
  return R
 end
 
@@ -309,13 +310,12 @@ savefig(plRMSD,"plRMSD.svg")
 savefig(Plotall,"plAll.svg")
 
 ## sensitivity
-N=mean(reduce(vcat,sol.u')[:,8])/length(C)
 function rep_num1(PP)
     μ,Λ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA=PP
     ωe=ψ+μ+ω
     ωia=μ+σ+γA
     ωis=μ+σ+γS
- R = Λ*N*ω/μ*((β1*δ*ηS)/(μp*ωe*ωis)+(β2*δ)/(ωe*ωis)+(β1*(1-δ)*ηA)/(μp*ωe*ωia)+(β2*(1-δ))/(ωe*ωia))
+ R = Λ*ω/μ*((β1*δ*ηS)/(μp*ωe*ωis)+(β2*δ)/(ωe*ωis)+(β1*(1-δ)*ηA)/(μp*ωe*ωia)+(β2*(1-δ))/(ωe*ωia))
  return R
 end
 

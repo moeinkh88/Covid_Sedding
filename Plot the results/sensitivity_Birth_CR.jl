@@ -1,8 +1,8 @@
 # sensivity for paramters obtained from bounded initial fitting, Birth and CR
 #M1
 
-function rep_num1(PP)
-    Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA=PP
+function rep_num1(PP,t)
+    μ,Λ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA=PP
     ωe=ψ+μ+ω
     ωia=μ+σ+γA
     ωis=μ+σ+γS

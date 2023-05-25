@@ -1,4 +1,4 @@
-# plots for paramters obtained from Turing ODE 14, when Λ=Birth rate and fitting only to C and R.
+# plots for parameters obtained from Turing ODE 14, when Λ=Birth rate and fitting only to C and R.
 # comparing the results with those modified by optimized fractional orders
 
 using Statistics
@@ -64,7 +64,7 @@ BB=map(x -> parse.(Float64, split(x)), AA)
 
 using Dates
 DateTick=Date(2020,3,27):Day(1):Date(2020,9,22)
-DateTick2= Dates.format.(DateTick, "d u")
+DateTick2= Dates.format.(DateTick, "d-m")
 
 Err=zeros(length(BB))
 for ii in 1:length(BB)
@@ -102,7 +102,7 @@ for ii in Ind[301:5:end]
 	sol = solve(prob, alg_hints=[:stiff]; saveat=1)
 		Pred1=reduce(vcat,sol.u')[:,4]
 	if reduce(vcat,sol.u')[50,4] < 2500
-		plot!(DateTick2, Pred1[:,1]; alpha=0.7, color="#BBBBBB")
+		plot!(DateTick2, Pred1[:,1]; alpha=0.7, color="gray72")
 	end
 end
 for ii in 1:length(Candidate)
@@ -118,10 +118,10 @@ for ii in 1:length(Candidate)
 	prob = ODEProblem(F, X0, tSpan, p1)
 	sol = solve(prob, alg_hints=[:stiff]; saveat=1)
 		Pred1=reduce(vcat,sol.u')[:,4]
-		plot!(Pred1[:,1]; color="yellow1")
+		plot!(Pred1[:,1]; color="gray45")
 end
-scatter!(C, color=:gray25,markerstrokewidth=0,
-	title = "(a) Fitting paramters of the ODE model" , titleloc = :left,titlefont = font(9),ylabel="Daily new confirmed cases (South Africa)", xrotation=20)
+scatter!(C, color=:white,markerstrokewidth=1,xlabel="Date (days)",
+	title = "(a) Fitting parameters of the ODE model" , titleloc = :left,titlefont = font(9),ylabel="Daily new confirmed cases (South Africa)", xrotation=20)
 #plot the best
 
 valErr,indErr=findmin(Err)
@@ -144,7 +144,7 @@ myshowall(stdout, BB[indErr,:], false)
 	X0=[S0,E0,IA0,IS0,R0,P0,D0,N0]
 	prob = ODEProblem(F, X0, tSpan, p1)
 	sol = solve(prob, alg_hints=[:stiff]; saveat=1)
-	PlODE=plot!(reduce(vcat,sol.u')[:,4], lw=3, color=:darkorchid1,formatter = :plain)
+	PlODE=plot!(reduce(vcat,sol.u')[:,4], lw=1.5, color=:black,formatter = :plain)
 
 Err1best=rmsd(C, reduce(vcat,sol.u')[:,4])
 
@@ -171,10 +171,10 @@ for ii in 1:length(BBf)
 
 	_, x1 = FDEsolver(Ff, [1,length(C)], X0, Order, par, h=.05, nc=4)
 	Pred1=x1[1:20:end,4]
-		plot!(DateTick2, Pred1; alpha=0.5, color="darkorange1")
+		plot!(DateTick2, Pred1; alpha=0.5, color="gray45")
 		Errf[ii]=rmsd(C, Pred1)
 end
-scatter!(C, color=:gray25, markerstrokewidth=0,
+scatter!(C, color=:white, markerstrokewidth=1,xlabel="Date (days)",
 	title = "(b) Fitting fractional order derivatives" , titleloc = :left,titlefont = font(9),ylabel="Daily new confirmed cases (South Africa)" , xrotation=20)
 #plot the best
 valErrf,indErrf=findmin(Errf)
@@ -194,7 +194,7 @@ i=Int(BBf[indErrf][1])
 	Order[8]=BBf[indErrf][8]
 	_, x1 = FDEsolver(Ff, [1,length(C)], X0, Order, p1, h=.05, nc=4)
 	Pred1=x1[1:20:end,4]
-	plFDE=plot!(Pred1, lw=3, color=:dodgerblue1,formatter=:plain)
+	plFDE=plot!(Pred1, lw=1.5, color=:black,formatter=:plain)
 
 Errfbest=rmsd(C, x1[1:20:end,4])
 ##
@@ -208,20 +208,26 @@ var(Errf[sortperm(Errf)][1:300])
 median(Errf[sortperm(Errf)][1:300])
 
 violin(repeat([""],outer=non300), Err[Ind][1:non300], side = :left,
-	c=:yellow1, label="Model with integer orders",
-	title = "(d) Density of RMSD values " ,titlefont = font(9), titleloc = :left)
+	c=:white, label="Model with integer orders", #ylabel="Distribution of RMSD values",
+	title = "(d)  Density of RMSD values" ,titlefont = font(9), titleloc = :left)
 # boxplot!(ones(non300), Err[Ind][1:non300], side = :left, fillalpha=0.75, linewidth=.02)
 # dotplot!(ones(non300), Err[Ind][1:non300], side = :left, marker=(:black, stroke(0)))
-	violin!(repeat([""],outer=non300), Errf[sortperm(Errf)][1:non300], side = :right, c=:darkorange1, label="Model with modifyed derivatives", legendposition=(.62,.9))
+	violin!(repeat([""],outer=non300), Errf[sortperm(Errf)][1:non300], side = :right, c=:white, label="Model with modifyed derivatives", legendposition=(.62,.9))
 	# scatter!([1.], [mean(Err[Ind][1:non300])])
 	# scatter!([1.], [mean(Errf[sortperm(Errf)][1:non300])])
-	plot!([0;.5], [Err1best; Err1best], lw=3, legend=false,color=:darkorchid1)
-		annotate!(.25, Err1best+24, text("Min RMSD=$(round(Err1best,digits=4))", :darkorchid1,:top, 7))
-		plot!([.5;1], [Errfbest; Errfbest], lw=3, legend=false,color=:dodgerblue1)
-		plRMSD=annotate!(.8, Errfbest+24, text("Min RMSD=$(round(Errfbest,digits=4))", :dodgerblue1,:top, 7))
+	annotate!(.3, 940, text("Integer model", :black,:top, 9),legend=false)
+	annotate!(.7, 940, text("Fractional model", :black,:top, 9),legend=false)
+	plot!([0.34;.5], [Err1best; Err1best], legend=false, c=:black, linestyle=:dash)
+	plot!([0.24;.5], [mean(Err[Ind][1:300]); mean(Err[Ind][1:300])], legend=false, c=:black, linestyle=:dash)
+	annotate!(.2, mean(Err[Ind][1:300]), text("Mean:\n$(round(mean(Err[Ind][1:300]),digits=3))", :black,:top, 7),legend=false)
+	annotate!(.82, mean(Errf[sortperm(Errf)][1:non300])+48, text("Mean:\n$(round(mean(Errf[sortperm(Errf)][1:non300]),digits=3))", :black,:top, 7),legend=false)
+		plot!([0.5;.8], [mean(Errf[sortperm(Errf)][1:non300]); mean(Errf[sortperm(Errf)][1:non300])], legend=false, c=:black, linestyle=:dash)
+		annotate!(.24, Err1best+3, text("Min:$(round(Err1best,digits=3))", :black,:top, 7),legend=false)
+		plot!([.5;.7], [Errfbest+.5; Errfbest+.5], legend=false,color=:black,linestyle=:dash)
+		plRMSD=annotate!(.8, Errfbest+9, text("Min:$(round(Errfbest,digits=4))", :black,:top, 7))
 # boxplot(reduce(vcat,BB[Ind][1:300]')[:,2:14],legend=:false)
 plbox1=boxplot(repeat(["μp" "ϕ2" "δ" "ψ" "ω" "σ" "γA" "ηS" "ηA"],outer=300),reduce(vcat,BB[Ind][1:300]')[:,[2,4,7,8,9,10,12,13,14]], legend=:false,
-	title = "(c) Paramter values for top 300 fits", titlefont = font(9) , titleloc = :left, color=:white, bar_width = 0.9,marker=(0.2, :black, stroke(0)))
+	title = "(c) parameter values for top 300 fits", titlefont = font(9) , titleloc = :left, color=:white, bar_width = 0.9,marker=(0.2, :black, stroke(0)))
 plbox2=boxplot(repeat(["ϕ1" "β1" "β2" "γS"],outer=300),reduce(vcat,BB[Ind][1:300]')[:,[3,5,6,11]],legend=:false, yaxis=:log,color=:white,bar_width = .9, marker=(0.2, :black, stroke(0)))
 boxplot([reduce(vcat,BB[Ind][1:300]')[:,[1,15,16]] reduce(vcat,BBf')[:,9]],legend=:false, yaxis=:log)
 
@@ -296,7 +302,8 @@ plot([reduce(vcat,sol.u')[:,7] x1[1:20:end,7]], label="D")
 plot([reduce(vcat,sol.u')[:,8] x1[1:20:end,8]], label="N")
 
 L=@layout[grid(1,2) ; [b{0.33w, .7h}  b{0.15w, .7h} b{0.52w, .7h}]]
-Plotall=plot(PlODE,plFDE, plbox1,plbox2,plRMSD, layout =L,size=(700,600), guidefont=font(8), legendfont=font(8))
+# L=@layout[grid(1,2) ; _ b{0.82w} _; [b{0.52w} b{0.15w}]]
+Plotall=plot(PlODE,plFDE,plbox1,plbox2,plRMSD, layout =L,size=(800,600), guidefont=font(8), legendfont=font(8))
 
 savefig(PlODE,"plODE.png")
 savefig(plFDE,"plFDE.png")
@@ -371,13 +378,13 @@ end
 
 
 # boxplot(repeat(["μ" "Λ" "μp" "ϕ1" "ϕ2" "β1" "β2" "δ" "ψ" "ω" "σ" "γS" "γA" "ηS" "ηA" "R0"],outer=300),sign.(hcat(Sens,R0)).*log10.(abs.(hcat(Sens,R0)).+1), legend=:false, #outliers=false,
-# 	title = "(c) Paramter values for top 300 fits", titlefont = font(9) , titleloc = :left, color=:white, bar_width = 0.9,marker=(0.2, :black, stroke(0)), ylabel="sign(x) * log(|x| + 1)")
+# 	title = "(c) parameter values for top 300 fits", titlefont = font(9) , titleloc = :left, color=:white, bar_width = 0.9,marker=(0.2, :black, stroke(0)), ylabel="sign(x) * log(|x| + 1)")
 # plboxSen=boxplot(repeat(["μ" "Λ" "μp" "ϕ1" "ϕ2" "β1" "β2" "δ" "ψ" "ω" "σ" "γS" "γA" "ηS" "ηA"],outer=300),sign.(Sens).*log10.(abs.(Sens).+1), legend=:false, outliers=false,
-# 		title = "(a) Paramter sensitivity for top 300 fits",titlefont = font(10) , titleloc = :left, color=:white,marker=(0.2, :black, stroke(0)), ylabel="sign(x) * log10(|x| + 1)")
+# 		title = "(a) parameter sensitivity for top 300 fits",titlefont = font(10) , titleloc = :left, color=:white,marker=(0.2, :black, stroke(0)), ylabel="sign(x) * log10(|x| + 1)")
 # plboxR0=violin(repeat(["R0"],outer=300),sign.(R0).*log10.(abs.(R0).+1), legend=:false,# outliers=false,
 # 			 title = "(b) Density of R0",titlefont = font(10) , titleloc = :left, color=:black)
 plboxSen=boxplot(repeat(["μ" "Λ" "μp" "ϕ1" "ϕ2" "β1" "β2" "δ" "ψ" "ω" "σ" "γS" "γA" "ηS" "ηA"],outer=300),Sens, legend=:false, outliers=false,
-	title = "(a) Paramter sensitivity for top 300 fits",titlefont = font(10) , titleloc = :left, color=:white,marker=(0.2, :black, stroke(0)))
+	title = "(a) parameter sensitivity for top 300 fits",titlefont = font(10) , titleloc = :left, color=:white,marker=(0.2, :black, stroke(0)))
 plboxR0=boxplot(repeat(["R0"],outer=300),R0, legend=:false,# outliers=false,
 	 title = "(b) Density of R0",titlefont = font(10) , titleloc = :left, color=:white, marker=(0.2, :black, stroke(0)),bar_width = .8, xaxis = ((0, 1), 0:1), yaxis=:log)
 

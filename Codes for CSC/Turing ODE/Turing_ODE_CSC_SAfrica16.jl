@@ -69,7 +69,7 @@ function  F(dx, x, par, t)
     dx[6]=γS*IS + T*γA*IA - μ*RT
     dx[7]=ηA*IA + ηS*IS - μp*P
     dx[8]=σA*IA + σS*IS - μ*D
-	dx[9]=T*σA*IA + σS*IS - μ*D
+	dx[9]=T*σA*IA + σS*IS - μ*DT
     dx[10]=Λ*N - σA*IA - σS*IS - μ*N
     return nothing
 
@@ -84,7 +84,7 @@ prob = ODEProblem(F, x0, tSpan, par)
     # Prior distributions.
 
     σ ~ InverseGamma(2, 3)
-	S0 ~ truncated(Normal(500,1500000); lower=1000, upper=2000000)
+	S0 ~ truncated(Normal(500,100000); lower=1000, upper=150000)
 	μ ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
     Λ ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
 	μp ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
@@ -101,7 +101,7 @@ prob = ODEProblem(F, x0, tSpan, par)
 	γA ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
 	ηS ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
 	ηA ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
-	ξ ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
+	ξ ~ truncated(Normal(0, 1); lower=ϵ, upper=.8)
 	T ~ truncated(Normal(0, 1); lower=ϵ, upper=.8)
 	E0 ~ truncated(Normal(0,300); lower=0, upper=300)
 	IA0 ~ truncated(Normal(0,300); lower=0, upper=300)
@@ -130,8 +130,8 @@ end
 model = fitprob([C TrueR TrueD],prob)
 
 # Sample 3 independent chains with forward-mode automatic differentiation (the default).
-Nch=10000
-chain = sample(model, NUTS(0.65), MCMCSerial(), Nch, 5; progress=false)
+Nch=8000
+chain = sample(model, NUTS(0.51), MCMCSerial(), Nch, 5; progress=false)
 
 
 display(chain)

@@ -1,0 +1,48 @@
+┌ Info: Found initial step size
+└   ϵ = 6.103515625e-6
+┌ Info: Found initial step size
+└   ϵ = 4.8828125e-5
+┌ Info: Found initial step size
+└   ϵ = 6.103515625e-6
+┌ Info: Found initial step size
+└   ϵ = 9.765625e-5
+┌ Info: Found initial step size
+└   ϵ = 2.44140625e-5
+┌ Warning: Assignment to `μp` in soft scope is ambiguous because a global variable by the same name exists: `μp` will be treated as a new local. Disambiguate by using `local μp` to suppress this warning or `global μp` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:145
+┌ Warning: Assignment to `ϕ1` in soft scope is ambiguous because a global variable by the same name exists: `ϕ1` will be treated as a new local. Disambiguate by using `local ϕ1` to suppress this warning or `global ϕ1` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:145
+┌ Warning: Assignment to `ϕ2` in soft scope is ambiguous because a global variable by the same name exists: `ϕ2` will be treated as a new local. Disambiguate by using `local ϕ2` to suppress this warning or `global ϕ2` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:145
+┌ Warning: Assignment to `β1` in soft scope is ambiguous because a global variable by the same name exists: `β1` will be treated as a new local. Disambiguate by using `local β1` to suppress this warning or `global β1` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:145
+┌ Warning: Assignment to `β2` in soft scope is ambiguous because a global variable by the same name exists: `β2` will be treated as a new local. Disambiguate by using `local β2` to suppress this warning or `global β2` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:145
+┌ Warning: Assignment to `δ` in soft scope is ambiguous because a global variable by the same name exists: `δ` will be treated as a new local. Disambiguate by using `local δ` to suppress this warning or `global δ` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:145
+┌ Warning: Assignment to `ψ` in soft scope is ambiguous because a global variable by the same name exists: `ψ` will be treated as a new local. Disambiguate by using `local ψ` to suppress this warning or `global ψ` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:145
+┌ Warning: Assignment to `ω` in soft scope is ambiguous because a global variable by the same name exists: `ω` will be treated as a new local. Disambiguate by using `local ω` to suppress this warning or `global ω` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:145
+┌ Warning: Assignment to `γS` in soft scope is ambiguous because a global variable by the same name exists: `γS` will be treated as a new local. Disambiguate by using `local γS` to suppress this warning or `global γS` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:145
+┌ Warning: Assignment to `γA` in soft scope is ambiguous because a global variable by the same name exists: `γA` will be treated as a new local. Disambiguate by using `local γA` to suppress this warning or `global γA` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:145
+┌ Warning: Assignment to `ηS` in soft scope is ambiguous because a global variable by the same name exists: `ηS` will be treated as a new local. Disambiguate by using `local ηS` to suppress this warning or `global ηS` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:145
+┌ Warning: Assignment to `ηA` in soft scope is ambiguous because a global variable by the same name exists: `ηA` will be treated as a new local. Disambiguate by using `local ηA` to suppress this warning or `global ηA` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:145
+┌ Warning: Assignment to `S0` in soft scope is ambiguous because a global variable by the same name exists: `S0` will be treated as a new local. Disambiguate by using `local S0` to suppress this warning or `global S0` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:147
+┌ Warning: Assignment to `IA0` in soft scope is ambiguous because a global variable by the same name exists: `IA0` will be treated as a new local. Disambiguate by using `local IA0` to suppress this warning or `global IA0` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:148
+┌ Warning: Assignment to `P0` in soft scope is ambiguous because a global variable by the same name exists: `P0` will be treated as a new local. Disambiguate by using `local P0` to suppress this warning or `global P0` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:149
+┌ Warning: Assignment to `E0` in soft scope is ambiguous because a global variable by the same name exists: `E0` will be treated as a new local. Disambiguate by using `local E0` to suppress this warning or `global E0` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:150
+┌ Warning: Assignment to `N0` in soft scope is ambiguous because a global variable by the same name exists: `N0` will be treated as a new local. Disambiguate by using `local N0` to suppress this warning or `global N0` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:151
+┌ Warning: Assignment to `prob` in soft scope is ambiguous because a global variable by the same name exists: `prob` will be treated as a new local. Disambiguate by using `local prob` to suppress this warning or `global prob` to assign to the existing global variable.
+└ @ /scratch/project_2007347/CV5_10_20.jl:154
+slurmstepd: error: *** JOB 20433575 ON r14c08 CANCELLED AT 2024-02-14T06:32:04 DUE TO TIME LIMIT ***
+slurmstepd: error: *** STEP 20433575.0 ON r14c08 CANCELLED AT 2024-02-14T06:32:04 DUE TO TIME LIMIT ***

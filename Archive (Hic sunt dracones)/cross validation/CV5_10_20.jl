@@ -93,8 +93,8 @@ prob = ODEProblem(F, x0, tSpan, par)
 	β1 ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
 	β2 ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
 	δ ~ truncated(Normal(0, 1); lower=.1, upper=.2)
-	ψ ~ truncated(Normal(0, 1); lower=1/21, upper=1/4)
-	ω ~ truncated(Normal(0, 1); lower=0.01, upper=0.07)
+	ψ ~ truncated(Normal(0, 1); lower=0.01, upper=0.07)
+	ω ~ truncated(Normal(0, 1); lower=1/21, upper=1/4)
 	σ2 ~ truncated(Normal(0, 1); lower=0.001, upper=0.03)
 	γS ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
 	γA ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
@@ -185,7 +185,8 @@ ErrODE20=rmsd([Cp20 R20], PredODE20)
 display(["ErrODE5",ErrODE5])
 display(["ErrODE10",ErrODE10])
 display(["ErrODE20",ErrODE20])
-####
+
+#### FDE
 
 tSpan=[1,length(C)]
 
@@ -222,9 +223,10 @@ function loss(args)
 		Order[indx]=ones(length(indx))
 	end
 
+	par1=[Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA]
 	N0=S0+E0+IA0+IS0+R0
 	x0=[S0,E0,IA0,IS0,R0,P0,D0,N0]
-	_, x = FDEsolver(F, tSpan, x0, Order, par, h=.05, nc=4)
+	_, x = FDEsolver(F, tSpan, x0, Order, par1, h=.05, nc=4)
 	Pred=x[1:20:end,4:5]
 	rmsd([C TrueR], Pred)
 
@@ -257,7 +259,8 @@ S0,IA0,P0,E0=Result[21:24]
 
 N0=S0+E0+IA0+IS0+R0
 x0=[S0,E0,IA0,IS0,R0,P0,D0,N0]
-_, x = FDEsolver(F, [1,length(CAll)], x0, Order, par, h=.05, nc=4)
+par2=[Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA]
+_, x = FDEsolver(F, [1,length(CAll)], x0, Order, par2, h=.05, nc=4)
 PredFDE5=x[20*(Tr+ts+1):20:20*(Tr+ts+5),4:5]
 PredFDE10=x[20*(Tr+ts+1):20:20*(Tr+ts+10),4:5]
 PredFDE20=x[20*(Tr+ts+1):20:20*(Tr+ts+20),4:5]

@@ -1,6 +1,7 @@
 ## initial fit (unbounded) with new R and D, fit CRF
 # same mortality of I_A and I_S
 # consider tested I_A, proportion of considering I_A in data
+# transission I_A to I_S
 # later we can consider scaled paramters
 
 using Statistics
@@ -50,7 +51,7 @@ x0=[S0,E0,IA0,IS0,R0,RT0,P0,D0,DT0] # initial conditons S0,E0,IA0,IS0,R0,P0,D0
 T=.1 # proportion of IA cases that did the covid test
 
 
-par=[Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
+par=[Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,ξ,T]
 
 Ndays=length(C)
 tSpan=(1,Ndays)
@@ -59,13 +60,13 @@ tSpan=(1,Ndays)
 
 function  F(dx, x, par, t)
 
-    Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA,T=par
+    Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA,ξ,T=par
     S,E,IA,IS,R,R1,P,D,D1=x
 
     dx[1]= Λ - β1*S*P/(1+ϕ1*P) - β2*S*(IA + IS)/(1+ϕ2*(IA+IS)) + ψ*E - µ*S
     dx[2]= β1*S*P/(1+ϕ1*P)+β2*S*(IA+IS)/(1+ϕ2*(IA+IS)) - ψ*E - μ*E - ω*E
-    dx[3]= (1-δ)*ω*E - (μ+σ)*IA - γA*IA
-    dx[4]= δ*ω*E - (μ + σ)*IS - γS*IS
+    dx[3]= (1-δ)*ω*E - (μ+σ)*IA - γA*IA - ξ*IA
+    dx[4]= δ*ω*E - (μ + σ)*IS - γS*IS + ξ*IA
     dx[5]=γS*IS + γA*IA - μ*R
     dx[6]=γS*IS + T*γA*IA - μ*R1
     dx[7]=ηA*IA + ηS*IS - μp*P
@@ -99,13 +100,14 @@ prob = ODEProblem(F, x0, tSpan, par)
 	γA ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
 	ηS ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
 	ηA ~ truncated(Normal(0, 1); lower=ϵ, upper=1)
+    ξ ~ truncated(Normal(0, 1); lower=ϵ, upper=.8)
 	T ~ truncated(Normal(0, 1); lower=ϵ, upper=.8)
 	E0 ~ truncated(Normal(0,300); lower=0, upper=300)
 	IA0 ~ truncated(Normal(0,300); lower=0, upper=300)
 	P0 ~ truncated(Normal(0,300); lower=0, upper=300)
 
     # Simulate model.
-	p=[Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
+	p=[Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,ξ,T]
 
 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0,DT0]
 	prob = remake(prob; p = p, u0 = X0)
@@ -133,7 +135,7 @@ chain = sample(model, NUTS(0.65), MCMCSerial(), Nch, 4; progress=false)
 
 display(chain)
 ##
-posterior_samples = sample(chain[[:S0,:μp,:ϕ1,:ϕ2,:β1,:β2,:δ,:ψ,:ω,:σ2,:γS,:γA,:ηS,:ηA,:T, :E0, :IA0, :P0]], Nch; replace=false)
+posterior_samples = sample(chain[[:S0,:μp,:ϕ1,:ϕ2,:β1,:β2,:δ,:ψ,:ω,:σ2,:γS,:γA,:ηS,:ηA,:ξ,:T, :E0, :IA0, :P0]], Nch; replace=false)
 
 function myshowall(io, x, limit = false)
   println(io, summary(x), ":")
@@ -146,12 +148,12 @@ myshowall(stdout, Array(posterior_samples.value[:,:,1]), false)
 Err=zeros(Nch)
 for i in 1:Nch
 	pp=Array(posterior_samples.value[:,:,1])[i,:]
-	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = pp[2:15]
-	p = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
+	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,ξ,T = pp[2:16]
+	p = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,ξ,T]
 	S0=pp[1]
-	E0=pp[16]
-	IA0=pp[17]
-	P0=pp[18]
+	E0=pp[17]
+	IA0=pp[18]
+	P0=pp[19]
 	
 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0,DT0]
 

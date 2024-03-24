@@ -10,16 +10,13 @@ C=diff(Float64.(Vector(Confirmed[1,:])))# Daily new confirmed cases
 
 dataset_D = CSV.read("time_series_covid19_deaths_global.csv", DataFrame) # all data of Death
 DeathData=dataset_D[dataset_D[!,2].=="South Africa",70:250]
-TrueDeath=diff(Float64.(Vector(DeathData[1,:])))
+TrueD=diff(Float64.(Vector(DeathData[1,:])))
 
 dataset_R = CSV.read("time_series_covid19_recovered_global.csv", DataFrame) # all data of Recover
 RData=dataset_R[dataset_R[!,2].=="South Africa",70:250]
 TrueR=diff(Float64.(Vector(RData[1,:])))
 
 #initial conditons and parameters
-
-S0=665188;E0=0;IA0=100;IS0=17;R0=0;RT0=0;P0=100;D0=0;DT0=0;
-x0=[S0,E0,IA0,IS0,R0,RT0,P0,D0,DT0] # initial conditons S0,E0,IA0,IS0,R0,P0,D0
 
 pp=[ 157318.78828818825
 0.0022059202987591317
@@ -48,7 +45,7 @@ S0=pp[1]
 	E0=pp[16]
 	IA0=pp[17]
  	P0=pp[18]
- 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0,DT0]
+ 	x0=[S0,E0,IA0,IS0,R0,RT0,P0,D0,DT0]
 
 Order=ones(9)
 par = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA,T, Order[1:7]]
@@ -73,6 +70,15 @@ function  F(t, x, par)
     dP=ηA^(α[6])*IA + ηS^(α[6])*IS - μp^(α[6])*P
     dD=σ^(α[7])*(IA+IS) - μ^(α[7])*D
     dD1=σ^(α[7])*(T*IA+IS) - μ^(α[7])*D1
+    # dS= Λ - β1*S*P/(1+ϕ1*P) - β2*S*(IA + IS)/(1+ϕ2*(IA+IS)) + ψ*E - µ*S
+    # dE= β1*S*P/(1+ϕ1*P)+β2*S*(IA+IS)/(1+ϕ2*(IA+IS)) - ψ*E - μ*E - ω*E
+    # dIA= (1-δ)*ω*E - (μ+σ)*IA - γA*IA
+    # dIS= δ*ω*E - (μ + σ)*IS - γS*IS
+    # dR=γS*IS + γA*IA - μ*R
+    # dR1=γS*IS + T*γA*IA - μ*R1
+    # dP=ηA*IA + ηS*IS - μp*P
+    # dD=σ*(IA+IS) - μ*D
+    # dD1=σ*(T*IA+IS) - μ*D1
     
     return [dS,dE,dIA,dIS,dR,dR1,dP,dD,dD1]
 
@@ -95,19 +101,21 @@ function loss(args)
 	end
     
 	_, x = FDEsolver(F, tSpan, x0, Order, p, h=.05, nc=4)
-	Pred=x[1:20:end,[4,6,9]]
-	rmsd([C TrueR TrueD], Pred)
+  PredI=x[1:20:end,4] .+ T.*x[1:20:end,3]
+  PredR=x[1:20:end,6]
+  PredD=x[1:20:end,9]
+	rmsd([C TrueR TrueD], [PredI PredR PredD])
 
 end
 p_lo_1=vcat(.7*ones(7)) #lower bound
 p_up_1=vcat(ones(7)) # upper bound
-p_vec_1=vcat(.999*ones(7))
+p_vec_1=vcat(1*ones(7))
 
 
 Res=optimize(loss,p_lo_1,p_up_1,p_vec_1,Fminbox(LBFGS()),# Broyden–Fletcher–Goldfarb–Shanno algorithm
 # Res=optimize(loss,p_lo_1,p_up_1,p_vec_1,SAMIN(rt=.999), # Simulated Annealing algorithm (sometimes it has better perfomance than (L-)BFGS)
 			Optim.Options(#outer_iterations = 10,
-						  iterations=100,
+						  iterations=20,
 						  show_trace=true,
 						  show_every=1)
 			)
@@ -125,3 +133,25 @@ function myshowall(io, x, limit = false)
 end
 
 myshowall(stdout, Array(Result), false)
+
+
+##test
+Result= [0.9999999999999989, 0.9697877072176395, 0.9999999999999825, 0.8771992786610435, 0.7546766615014835, .7546766615014835, 0.7000000000000313, 0.9999999999999134, .9999999999999134]
+    
+	_, x = FDEsolver(F, tSpan, x0, Result, [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA,T,Result[[1:5; 7; 8]]], h=.05, nc=4)
+  PredI=x[1:20:end,4] .+ T.*x[1:20:end,3]
+  PredR=x[1:20:end,6]
+  PredD=x[1:20:end,9]
+	rmsd([C TrueR TrueD], [PredI PredR PredD])
+
+
+
+  using Plots
+  plot(reduce(vcat,sol.u')[:,4])
+  scatter!(C)
+  
+  plot(reduce(vcat,sol.u')[:,6])
+  scatter!(TrueR)
+  
+  plot(reduce(vcat,sol.u')[:,9])
+  scatter!(TrueD)

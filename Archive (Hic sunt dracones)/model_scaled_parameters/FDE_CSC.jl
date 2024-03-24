@@ -45,7 +45,8 @@ S0=pp[1]
 	E0=pp[16]
 	IA0=pp[17]
  	P0=pp[18]
- 	x0=[S0,E0,IA0,IS0,R0,RT0,P0,D0,DT0]
+IS0=17;R0=0;RT0=0;D0=0;DT0=0;
+x0=[S0,E0,IA0,IS0,R0,RT0,P0,D0,DT0]
 
 Order=ones(9)
 par = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA,T, Order[1:7]]

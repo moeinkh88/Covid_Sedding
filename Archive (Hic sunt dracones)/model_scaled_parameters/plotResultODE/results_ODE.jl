@@ -286,3 +286,136 @@ layout = @layout [a; b; c]
 
 # Combine the plots into one figure
 Pl_IRD = plot(Pl_I, Pl_R, Pl_D, layout = layout, size=(700,650))
+
+## compare R1 and R
+
+## plot R and RT
+plot(; legend=false)
+Err=zeros(length(BB))
+for ii in 1:length(BB)
+	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[ii][2:15]
+	p1= [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
+	S0=BB[ii][1]
+	E0=BB[ii][16]
+	IA0=BB[ii][17]
+	P0=BB[ii][18]
+	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0,DT0]
+
+	prob = ODEProblem(F, X0, tSpan, p1)
+	sol = solve(prob, alg_hints=[:stiff]; saveat=1)
+	if reduce(vcat,sol.u')[45,5] < 2.5e3
+	Pred1=reduce(vcat,sol.u')[:,5]
+	plot!(Pred1; alpha=0.1, color="#BBBBBB")
+  II=sol[4,:] .+ T.*sol[3,:]
+  RR=sol[6,:]
+  DD=sol[9,:]
+  Err[ii]=rmsd([C TrueR TrueD], [II RR DD])
+
+	# Err[ii]=rmsd(TrueR, Pred1)
+	end
+end
+
+# Plot real
+PR=scatter!(TrueR)
+
+plot(; legend=false)
+Err=zeros(length(BB))
+for ii in 1:length(BB)
+	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[ii][2:15]
+	p1= [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
+	S0=BB[ii][1]
+	E0=BB[ii][16]
+	IA0=BB[ii][17]
+	P0=BB[ii][18]
+	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0,DT0]
+
+	prob = ODEProblem(F, X0, tSpan, p1)
+	sol = solve(prob, alg_hints=[:stiff]; saveat=1)
+	if reduce(vcat,sol.u')[45,5] < 2.5e3
+	Pred1=reduce(vcat,sol.u')[:,6]
+	plot!(Pred1; alpha=0.1, color="#BBBBBB")
+  II=sol[4,:] .+ T.*sol[3,:]
+  RR=sol[6,:]
+  DD=sol[9,:]
+  Err[ii]=rmsd([C TrueR TrueD], [II RR DD])
+
+	# Err[ii]=rmsd(TrueR, Pred1)
+	end
+end
+
+# Plot real
+PRT=scatter!(TrueR)
+
+
+#plot all
+layout = @layout [a; b]
+
+# Combine the plots into one figure
+Pl_IRD = plot(PR, PRT, layout = layout, size=(700,650))
+
+
+## compare D1 and D
+
+## plot D and DT
+plot(; legend=false)
+Err=zeros(length(BB))
+for ii in 1:length(BB)
+	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[ii][2:15]
+	p1= [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
+	S0=BB[ii][1]
+	E0=BB[ii][16]
+	IA0=BB[ii][17]
+	P0=BB[ii][18]
+	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0,DT0]
+
+	prob = ODEProblem(F, X0, tSpan, p1)
+	sol = solve(prob, alg_hints=[:stiff]; saveat=1)
+	if reduce(vcat,sol.u')[45,5] < 2.5e3
+	Pred1=reduce(vcat,sol.u')[:,8]
+	plot!(Pred1; alpha=0.1, color="#BBBBBB")
+  II=sol[4,:] .+ T.*sol[3,:]
+  RR=sol[6,:]
+  DD=sol[9,:]
+  Err[ii]=rmsd([C TrueR TrueD], [II RR DD])
+
+	# Err[ii]=rmsd(TrueR, Pred1)
+	end
+end
+
+# Plot real
+PD=scatter!(TrueD)
+
+plot(; legend=false)
+Err=zeros(length(BB))
+for ii in 1:length(BB)
+	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[ii][2:15]
+	p1= [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
+	S0=BB[ii][1]
+	E0=BB[ii][16]
+	IA0=BB[ii][17]
+	P0=BB[ii][18]
+	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0,DT0]
+
+	prob = ODEProblem(F, X0, tSpan, p1)
+	sol = solve(prob, alg_hints=[:stiff]; saveat=1)
+	if reduce(vcat,sol.u')[45,5] < 2.5e3
+	Pred1=reduce(vcat,sol.u')[:,9]
+	plot!(Pred1; alpha=0.1, color="#BBBBBB")
+  II=sol[4,:] .+ T.*sol[3,:]
+  RR=sol[6,:]
+  DD=sol[9,:]
+  Err[ii]=rmsd([C TrueR TrueD], [II RR DD])
+
+	# Err[ii]=rmsd(TrueR, Pred1)
+	end
+end
+
+# Plot real
+PDT=scatter!(TrueD)
+
+
+#plot all
+layout = @layout [a; b]
+
+# Combine the plots into one figure
+PDDT = plot(PD, PDT, layout = layout, size=(700,650))

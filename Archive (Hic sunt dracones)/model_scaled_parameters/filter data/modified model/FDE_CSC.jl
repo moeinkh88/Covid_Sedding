@@ -1,6 +1,6 @@
 # parameters have the same time scale with derivatives
 
-using CSV, DataFrames
+using CSV, DataFrames, Statistics
 using Optim, FdeSolver, StatsBase
 
 # Dataset
@@ -8,13 +8,42 @@ dataset_CC = CSV.read("time_series_covid19_confirmed_global.csv", DataFrame) # a
 Confirmed=dataset_CC[dataset_CC[!,2].=="South Africa",70:250] #comulative confirmed data of Portugal from 3/2/20 to 5/17/20
 C=diff(Float64.(Vector(Confirmed[1,:])))# Daily new confirmed cases
 
-dataset_D = CSV.read("time_series_covid19_deaths_global.csv", DataFrame) # all data of Death
-DeathData=dataset_D[dataset_D[!,2].=="South Africa",70:250]
-TrueD=diff(Float64.(Vector(DeathData[1,:])))
-
 dataset_R = CSV.read("time_series_covid19_recovered_global.csv", DataFrame) # all data of Recover
 RData=dataset_R[dataset_R[!,2].=="South Africa",70:250]
-TrueR=diff(Float64.(Vector(RData[1,:])))
+TrueR0=diff(Float64.(Vector(RData[1,:])))
+
+# Calculate Q1, Q3, and IQR
+Q1 = quantile(TrueR0, 0.25)
+Q3 = quantile(TrueR0, 0.75)
+IQR = Q3 - Q1
+
+# Calculate the bounds
+lower_bound = Q1 - 3 * IQR
+upper_bound = Q3 + 3 * IQR
+
+TrueR=copy(TrueR0)
+# Filter the dataset to remove outliers
+indR=findall(x -> x < lower_bound || x > upper_bound, TrueR0)
+TrueR[indR]=(TrueR0[indR .- 1] + TrueR0[indR .+ 1])/2
+
+
+dataset_D = CSV.read("time_series_covid19_deaths_global.csv", DataFrame) # all data of Recover
+DData=dataset_D[dataset_D[!,2].=="South Africa",70:250]
+TrueD0=diff(Float64.(Vector(DData[1,:])))
+
+# Calculate Q1, Q3, and IQR
+Q1 = quantile(TrueD0, 0.25)
+Q3 = quantile(TrueD0, 0.75)
+IQR = Q3 - Q1
+
+# Calculate the bounds
+lower_bound = Q1 - 2 * IQR
+upper_bound = Q3 + 2 * IQR
+
+TrueD=copy(TrueD0)
+# Filter the dataset to remove outliers
+indD=findall(x -> x < lower_bound || x > upper_bound, TrueD0)
+TrueD[indD]=(TrueD0[indD .- 1] + TrueD0[indD .+ 1])/2
 
 #initial conditons and parameters
 
@@ -45,10 +74,10 @@ S0=pp[1]
 	E0=pp[16]
 	IA0=pp[17]
  	P0=pp[18]
-IS0=17;R0=0;RT0=0;D0=0;DT0=0;
-x0=[S0,E0,IA0,IS0,R0,RT0,P0,D0,DT0]
+IS0=17;R0=0;RT0=0;D0=0;
+x0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
 
-Order=ones(9)
+Order=ones(8)
 par = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA,T, Order[1:7]]
 
 
@@ -59,7 +88,7 @@ tSpan=[1,length(C)]
 function  F(t, x, par)
 
     Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA,T=par[1:16]
-    S,E,IA,IS,R,R1,P,D,D1=x
+    S,E,IA,IS,R,R1,P,D=x
     α=par[17][:]
 
     dS= Λ^(α[1]) - β1^(α[1])*S*P/(1+ϕ1*P) - β2^(α[1])*S*(IA + IS)/(1+ϕ2*(IA+IS)) + ψ^(α[1])*E - µ^(α[1])*S
@@ -70,18 +99,8 @@ function  F(t, x, par)
     dR1=γS^(α[5])*IS + T*γA^(α[5])*IA - μ^(α[5])*R1
     dP=ηA^(α[6])*IA + ηS^(α[6])*IS - μp^(α[6])*P
     dD=σ^(α[7])*(IA+IS) - μ^(α[7])*D
-    dD1=σ^(α[7])*(T*IA+IS) - μ^(α[7])*D1
-    # dS= Λ - β1*S*P/(1+ϕ1*P) - β2*S*(IA + IS)/(1+ϕ2*(IA+IS)) + ψ*E - µ*S
-    # dE= β1*S*P/(1+ϕ1*P)+β2*S*(IA+IS)/(1+ϕ2*(IA+IS)) - ψ*E - μ*E - ω*E
-    # dIA= (1-δ)*ω*E - (μ+σ)*IA - γA*IA
-    # dIS= δ*ω*E - (μ + σ)*IS - γS*IS
-    # dR=γS*IS + γA*IA - μ*R
-    # dR1=γS*IS + T*γA*IA - μ*R1
-    # dP=ηA*IA + ηS*IS - μp*P
-    # dD=σ*(IA+IS) - μ*D
-    # dD1=σ*(T*IA+IS) - μ*D1
     
-    return [dS,dE,dIA,dIS,dR,dR1,dP,dD,dD1]
+    return [dS,dE,dIA,dIS,dR,dR1,dP,dD]
 
 end
 
@@ -93,7 +112,6 @@ function loss(args)
     Order[6]=copy(Order[5])
     Order[7]=args[6]
     Order[8]=args[7]
-    Order[9]=copy(Order[8])
 
 	p=copy([Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA,T,args])
 	if size(x0,2) != Int64(ceil(maximum(Order))) # to prevent any errors regarding orders higher than 1
@@ -104,7 +122,7 @@ function loss(args)
 	_, x = FDEsolver(F, tSpan, x0, Order, p, h=.05, nc=4)
   PredI=x[1:20:end,4] .+ T.*x[1:20:end,3]
   PredR=x[1:20:end,6]
-  PredD=x[1:20:end,9]
+  PredD=x[1:20:end,8]
 	rmsd([C TrueR TrueD], [PredI PredR PredD])
 
 end
@@ -142,7 +160,7 @@ Result= [0.9999999999999989, 0.9697877072176395, 0.9999999999999825, 0.877199278
 	_, x = FDEsolver(F, tSpan, x0, Result, [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ,γS,γA,ηS,ηA,T,Result[[1:5; 7; 8]]], h=.05, nc=4)
   PredI=x[1:20:end,4] .+ T.*x[1:20:end,3]
   PredR=x[1:20:end,6]
-  PredD=x[1:20:end,9]
+  PredD=x[1:20:end,8]
 	rmsd([C TrueR TrueD], [PredI PredR PredD])
 
 
@@ -154,5 +172,5 @@ Result= [0.9999999999999989, 0.9697877072176395, 0.9999999999999825, 0.877199278
   plot(reduce(vcat,sol.u')[:,6])
   scatter!(TrueR)
   
-  plot(reduce(vcat,sol.u')[:,9])
+  plot(reduce(vcat,sol.u')[:,8])
   scatter!(TrueD)

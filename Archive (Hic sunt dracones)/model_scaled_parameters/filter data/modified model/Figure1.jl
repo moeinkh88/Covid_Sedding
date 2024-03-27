@@ -70,7 +70,7 @@ function  Ff(t, x, par) # for FDE model
 end
 
 # Open the file
-AA=readlines("output4.txt")
+AA=readlines("output2.txt")
 
 BB=map(x -> parse.(Float64, split(x)), AA)
 
@@ -84,9 +84,9 @@ for ii in 1:length(BB)
     μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[ii][2:15]
 	p1 = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
 	S0=BB[ii][1]
-	IA0=BB[ii][15]
-	P0=BB[ii][16]
-	E0=BB[ii][17]
+	E0=BB[ii][16]
+	IA0=BB[ii][17]
+	P0=BB[ii][18]
 	
 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
 
@@ -106,9 +106,9 @@ for ii in Ind[301:5:end]
 	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[ii][2:15]
 	p1 = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
 	S0=BB[ii][1]
-	IA0=BB[ii][15]
-	P0=BB[ii][16]
-	E0=BB[ii][17]
+	E0=BB[ii][16]
+	IA0=BB[ii][17]
+	P0=BB[ii][18]
 	
 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
 
@@ -123,9 +123,9 @@ for ii in 1:length(Candidate)
 	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[ii][2:15]
 	p1 = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
 	S0=BB[ii][1]
-	IA0=BB[ii][15]
-	P0=BB[ii][16]
-	E0=BB[ii][17]
+	E0=BB[ii][16]
+	IA0=BB[ii][17]
+	P0=BB[ii][18]
 	
 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
 
@@ -151,9 +151,9 @@ myshowall(stdout, BB[indErr,:], false)
 μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[indErr][2:15]
 	p1 = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
 	S0=BB[indErr][1]
-	IA0=BB[indErr][15]
-	P0=BB[indErr][16]
-	E0=BB[indErr][17]
+	E0=BB[ii][16]
+	IA0=BB[ii][17]
+	P0=BB[ii][18]
 	
 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
 
@@ -169,9 +169,9 @@ for ii in Ind[301:5:end]
 	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[ii][2:15]
 	p1 = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
 	S0=BB[ii][1]
-	IA0=BB[ii][15]
-	P0=BB[ii][16]
-	E0=BB[ii][17]
+	E0=BB[ii][16]
+	IA0=BB[ii][17]
+	P0=BB[ii][18]
 	
 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
 
@@ -186,9 +186,9 @@ for ii in 1:length(Candidate)
 	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[ii][2:15]
 	p1 = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
 	S0=BB[ii][1]
-	IA0=BB[ii][15]
-	P0=BB[ii][16]
-	E0=BB[ii][17]
+	E0=BB[ii][16]
+	IA0=BB[ii][17]
+	P0=BB[ii][18]
 	
 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
 
@@ -214,9 +214,9 @@ myshowall(stdout, BB[indErr,:], false)
 μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[indErr][2:15]
 	p1 = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
 	S0=BB[indErr][1]
-	IA0=BB[indErr][15]
-	P0=BB[indErr][16]
-	E0=BB[indErr][17]
+	E0=BB[indErr][16]
+	IA0=BB[indErr][17]
+	P0=BB[indErr][18]
 	
 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
 
@@ -233,9 +233,9 @@ for ii in Ind[301:5:end]
 	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[ii][2:15]
 	p1 = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
 	S0=BB[ii][1]
-	IA0=BB[ii][15]
-	P0=BB[ii][16]
-	E0=BB[ii][17]
+	E0=BB[ii][16]
+	IA0=BB[ii][17]
+	P0=BB[ii][18]
 	
 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
 
@@ -250,9 +250,9 @@ for ii in 1:length(Candidate)
 	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[ii][2:15]
 	p1 = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
 	S0=BB[ii][1]
-	IA0=BB[ii][15]
-	P0=BB[ii][16]
-	E0=BB[ii][17]
+	E0=BB[ii][16]
+	IA0=BB[ii][17]
+	P0=BB[ii][18]
 	
 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
 
@@ -278,17 +278,45 @@ myshowall(stdout, BB[indErr,:], false)
 μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[indErr][2:15]
 	p1 = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
 	S0=BB[indErr][1]
-	IA0=BB[indErr][15]
-	P0=BB[indErr][16]
-	E0=BB[indErr][17]
+	E0=BB[indErr][16]
+	IA0=BB[indErr][17]
+	P0=BB[indErr][18]
 	
 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
 
 	prob = ODEProblem(F, X0, tSpan, p1)
 	sol = solve(prob, alg_hints=[:stiff]; saveat=1)
-	PlODE_D=plot!(sol[8,:], lw=1.5, color=:black,formatter = :plain)
+	PlODE_D=plot!(sol[8,    :], lw=1.5, color=:black,formatter = :plain)
 
 Err1best=rmsd(TrueD, sol[8,:])
 
 # plots for FDEs
 
+AAf=readlines("Covid_Shedding/Output_CSC/output_final300plot.txt")
+BBf=map(x -> parse.(Float64, split(x)), AAf)
+
+
+# Plot c
+
+plot(; legend=false)
+Order=ones(8)
+Errf=zeros(length(BBf))
+for ii in 1:length(BBf)
+	i=Int(BBf[ii][1])
+	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candidate[i][2:15]
+	par= [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
+	S0=Candidate[i][1]
+	IA0=Candidate[i][15]
+	P0=Candidate[i][16]
+	E0=BBf[ii][9]
+	N0=S0+E0+IA0+IS0+R0
+	X0=[S0,E0,IA0,IS0,R0,P0,D0,N0]
+
+	Order[1:6]=BBf[ii][2:7]
+	Order[8]=BBf[ii][8]
+
+	_, x1 = FDEsolver(Ff, [1,length(C)], X0, Order, par, h=.05, nc=4)
+	Pred1=x1[1:20:end,4]
+		plot!(DateTick2, Pred1; alpha=0.5, color="gray45")
+		Errf[ii]=rmsd(C, Pred1)
+end

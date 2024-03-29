@@ -102,7 +102,7 @@ end
 Ind=sortperm(Err)
 Candidate=BB[Ind[1:300]]
 plot(; legend = false)
-for ii in Ind[301:5:end]
+for ii in Ind[301:50:end]
 	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[ii][2:15]
 	p1 = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
 	S0=BB[ii][1]
@@ -116,7 +116,7 @@ for ii in Ind[301:5:end]
 	sol = solve(prob, alg_hints=[:stiff]; saveat=1)
 		Pred1=sol[4,:] .+ T.*sol[3,:]
 	if reduce(vcat,sol.u')[50,4] < 2500
-		plot!(DateTick2, Pred1[:,1]; alpha=0.7, color="gray72")
+		plot!(DateTick2, Pred1[:,1]; alpha=0.7, color="gray92")
 	end
 end
 for ii in 1:length(Candidate)
@@ -151,9 +151,7 @@ myshowall(stdout, BB[indErr,:], false)
 μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[indErr][2:15]
 	p1 = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
 	S0=BB[indErr][1]
-	E0=BB[indErr][16]
-	IA0=BB[indErr][17]
-	P0=BB[indErr][18]
+	E0, IA0, P0=BB[indErr][16:18]
 	
 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
 
@@ -165,7 +163,7 @@ Err1best=rmsd(C, sol[4,:] .+ T.*sol[3,:])
 
 # Plot R
 plot(; legend = false)
-for ii in Ind[301:5:end]
+for ii in Ind[301:50:end]
 	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[ii][2:15]
 	p1 = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
 	S0=BB[ii][1]
@@ -179,7 +177,7 @@ for ii in Ind[301:5:end]
 	sol = solve(prob, alg_hints=[:stiff]; saveat=1)
 		Pred1=sol[6,:]
 	if reduce(vcat,sol.u')[50,4] < 2500
-		plot!(DateTick2, Pred1[:,1]; alpha=0.7, color="gray72")
+		plot!(DateTick2, Pred1[:,1]; alpha=.7, color="gray92")
 	end
 end
 for ii in 1:length(Candidate)
@@ -198,25 +196,13 @@ for ii in 1:length(Candidate)
 		plot!(Pred1[:,1]; color="gray45")
 end
 scatter!(TrueR, color=:white,markerstrokewidth=1,xlabel="Date (days)",
-	title = "(b) " , titleloc = :left,titlefont = font(9),ylabel="Recovered individuals", xrotation=20)
+	title = "(b) " , titleloc = :left,titlefont = font(9),ylabel="Recovered Individuals", xrotation=20)
 #plot the best
-
-valErr,indErr=findmin(Err)
-display(["MinErr",valErr])
-function myshowall(io, x, limit = false)
-	println(io, summary(x), ":")
-	Base.print_matrix(IOContext(io, :limit => limit), x)
-end
-non300=290
-
-myshowall(stdout, BB[indErr,:], false)
 
 μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[indErr][2:15]
 	p1 = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
 	S0=BB[indErr][1]
-	E0=BB[indErr][16]
-	IA0=BB[indErr][17]
-	P0=BB[indErr][18]
+	E0,IA0,P0=BB[indErr][16:18]
 	
 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
 
@@ -224,12 +210,12 @@ myshowall(stdout, BB[indErr,:], false)
 	sol = solve(prob, alg_hints=[:stiff]; saveat=1)
 	PlODE_R=plot!(sol[6,:], lw=1.5, color=:black,formatter = :plain)
 
-Err1best=rmsd(C, sol[6,:])
+Err1best=rmsd(TrueR, sol[6,:])
 
 
 # Plot D
 plot(; legend = false)
-for ii in Ind[301:5:end]
+for ii in Ind[301:50:end]
 	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[ii][2:15]
 	p1 = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
 	S0=BB[ii][1]
@@ -243,7 +229,7 @@ for ii in Ind[301:5:end]
 	sol = solve(prob, alg_hints=[:stiff]; saveat=1)
 		Pred1=sol[8,:]
 	if reduce(vcat,sol.u')[50,4] < 2500
-		plot!(DateTick2, Pred1[:,1]; alpha=0.7, color="gray72")
+		plot!(DateTick2, Pred1[:,1]; alpha=0.7, color="gray92")
 	end
 end
 for ii in 1:length(Candidate)
@@ -264,16 +250,6 @@ end
 scatter!(TrueD, color=:white,markerstrokewidth=1,xlabel="Date (days)",
 	title = "(c) " , titleloc = :left,titlefont = font(9),ylabel="Deceased Individuals", xrotation=20)
 #plot the best
-
-valErr,indErr=findmin(Err)
-display(["MinErr",valErr])
-function myshowall(io, x, limit = false)
-	println(io, summary(x), ":")
-	Base.print_matrix(IOContext(io, :limit => limit), x)
-end
-non300=290
-
-myshowall(stdout, BB[indErr,:], false)
 
 μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = BB[indErr][2:15]
 	p1 = [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
@@ -327,7 +303,7 @@ for i in 1:length(BBf)
 end
 
 scatter!(C, color=:white, markerstrokewidth=1,xlabel="Date (days)",
-	title = "(b) Fitting fractional order derivatives" , titleloc = :left,titlefont = font(9),ylabel="Daily new confirmed cases (South Africa)" , xrotation=20)
+	title = "(d)" , titleloc = :left,titlefont = font(9),ylabel="Daily New Confirmed Cases" , xrotation=20)
 #plot the best
 valErrf,indErrf=findmin(Errf)
 display(["MinErrf",valErrf])
@@ -335,10 +311,10 @@ display(["MinErrf",valErrf])
 myshowall(stdout, BBf[indErrf,:], false)
 # i=Int(BBf[indErrf][1])
 μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candid[indErrf,2:15]
-	S0=Candidate[indErrf,1]
-	E0=Candidate[indErrf,16]
-	IA0=Candidate[indErrf,17]
-	P0=Candidate[indErrf,18]
+	S0=Candid[indErrf,1]
+	E0=Candid[indErrf,16]
+	IA0=Candid[indErrf,17]
+	P0=Candid[indErrf,18]
 	
 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
 	Order[1:5]=BBf[indErrf][1:5]
@@ -357,7 +333,7 @@ Errfbest=rmsd(C, PredI)
 ### plot R
 plot(; legend=false)
 Order=ones(8)
-Errf=zeros(length(BBf))
+
 for i in 1:length(BBf)
 	# i=Int(BBf[ii][1])
 	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candid[i,2:15]
@@ -381,18 +357,15 @@ for i in 1:length(BBf)
 end
 
 scatter!(TrueR, color=:white, markerstrokewidth=1,xlabel="Date (days)",
-	title = "(b) Fitting fractional order derivatives" , titleloc = :left,titlefont = font(9),ylabel="Daily new confirmed cases (South Africa)" , xrotation=20)
+	title = "(e)" , titleloc = :left,titlefont = font(9),ylabel="Recovered Individuals" , xrotation=20)
 #plot the best
-valErrf,indErrf=findmin(Errf)
-display(["MinErrf",valErrf])
 
-myshowall(stdout, BBf[indErrf,:], false)
 # i=Int(BBf[indErrf][1])
 μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candid[indErrf,2:15]
-	S0=Candidate[indErrf,1]
-	E0=Candidate[indErrf,16]
-	IA0=Candidate[indErrf,17]
-	P0=Candidate[indErrf,18]
+	S0=Candid[indErrf,1]
+	E0=Candid[indErrf,16]
+	IA0=Candid[indErrf,17]
+	P0=Candid[indErrf,18]
 	
 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
 	Order[1:5]=BBf[indErrf][1:5]
@@ -413,7 +386,7 @@ Errfbest=rmsd(TrueR, PredR)
 
 plot(; legend=false)
 Order=ones(8)
-Errf=zeros(length(BBf))
+
 for i in 1:length(BBf)
 	# i=Int(BBf[ii][1])
 	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candid[i,2:15]
@@ -437,18 +410,15 @@ for i in 1:length(BBf)
 end
 
 scatter!(TrueD, color=:white, markerstrokewidth=1,xlabel="Date (days)",
-	title = "(b) Fitting fractional order derivatives" , titleloc = :left,titlefont = font(9),ylabel="Daily new confirmed cases (South Africa)" , xrotation=20)
+	title = "(f)" , titleloc = :left,titlefont = font(9),ylabel="Deceased Individuals" , xrotation=20)
 #plot the best
-valErrf,indErrf=findmin(Errf)
-display(["MinErrf",valErrf])
 
-myshowall(stdout, BBf[indErrf,:], false)
 # i=Int(BBf[indErrf][1])
 μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candid[indErrf,2:15]
-	S0=Candidate[indErrf,1]
-	E0=Candidate[indErrf,16]
-	IA0=Candidate[indErrf,17]
-	P0=Candidate[indErrf,18]
+	S0=Candid[indErrf,1]
+	E0=Candid[indErrf,16]
+	IA0=Candid[indErrf,17]
+	P0=Candid[indErrf,18]
 	
 	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
 	Order[1:5]=BBf[indErrf][1:5]
@@ -466,7 +436,48 @@ Errfbest=rmsd(TrueD, PredD)
 
 L=@layout[grid(3,2)]
 # L=@layout[grid(1,2) ; _ b{0.82w} _; [b{0.52w} b{0.15w}]]
-Plotall=plot(PlODE_I,PlODE_R,PlODE_D,plFDE_I,plFDE_R,plFDE_D, layout =L,size=(800,600), guidefont=font(8), legendfont=font(8))
+Plotall=plot(PlODE_I,plFDE_I,PlODE_R,plFDE_R,PlODE_D,plFDE_D, layout =L,size=(800,600), guidefont=font(8), legendfont=font(8))
+
+################## plot errors
+mean(Err[Ind][1:300])
+std(Err[Ind][1:300])
+var(Err[Ind][1:300])
+median(Err[Ind][1:300])
+mean(Errf[sortperm(Errf)][1:300])
+std(Errf[sortperm(Errf)][1:300])
+var(Errf[sortperm(Errf)][1:300])
+median(Errf[sortperm(Errf)][1:300])
+
+violin(repeat([""],outer=300), Err[Ind][1:300], side = :left,
+	c=:white, label="Model with integer orders", #ylabel="Distribution of RMSD values",
+	title = "Density of RMSD values" ,titlefont = font(13), titleloc = :left,ytickfontsize=11)
+# boxplot!(ones(non300), Err[Ind][1:non300], side = :left, fillalpha=0.75, linewidth=.02)
+# dotplot!(ones(non300), Err[Ind][1:non300], side = :left, marker=(:black, stroke(0)))
+	violin!(repeat([""],outer=300), Errf[sortperm(Errf)][1:300], side = :right, c=:white, label="Model with modifyed derivatives", legendposition=(.62,.9))
+	# scatter!([1.], [mean(Err[Ind][1:non300])])
+	# scatter!([1.], [mean(Errf[sortperm(Errf)][1:non300])])
+	annotate!(.3, 1752, text("Integer Order model", :black,:top, 11),legend=false)
+	annotate!(.7, 1752, text("Fractional Order model", :black,:top, 11),legend=false)
+	plot!([0.3;.5], [valErr; valErr], legend=false, c=:black, linestyle=:dash)
+	plot!([0.2;.5], [mean(Err[Ind][1:300]); mean(Err[Ind][1:300])], legend=false, c=:black, linestyle=:dash)
+	annotate!(.16, mean(Err[Ind][1:300]), text("Mean:\n$(round(mean(Err[Ind][1:300]),digits=3))", :black,:top, 11),legend=false)
+	annotate!(.8, mean(Errf[sortperm(Errf)][1:300]), text("Mean:\n$(round(mean(Errf[sortperm(Errf)][1:300]),digits=3))", :black,:top, 11),legend=false)
+		plot!([0.5;.88], [mean(Errf[sortperm(Errf)][1:300]); mean(Errf[sortperm(Errf)][1:300])], legend=false, c=:black, linestyle=:dash)
+		annotate!(.36, valErr-5, text("Minimum:\n$(round(valErr,digits=3))", :black,:top, 11),legend=false)
+		plot!([.5;.7], [valErrf; valErrf], legend=false,color=:black,linestyle=:dash)
+		plRMSD=annotate!(.8, valErrf+28, text("Minimum:\n$(round(valErrf,digits=4))", :black,:top, 11))
+
+#######################plot values
+		# boxplot(reduce(vcat,BB[Ind][1:300]')[:,2:14],legend=:false)
+plbox1=boxplot(repeat(["ϕ2" "δ" "ψ" "ω" "ηA"],outer=300),reduce(vcat,BB[Ind][1:300]')[:,[4,7,8,9,14]], legend=:false,
+	title = "(c) parameter values for top 300 fits", titlefont = font(9) , titleloc = :left, color=:white, bar_width = 0.9,marker=(0.2, :black, stroke(0)))
+plbox2=boxplot(repeat(["μp" "ϕ1" "β1" "β2" "σ" "γS" "γA" "ηS"],outer=300),reduce(vcat,BB[Ind][1:300]')[:,[2,3,5,6,10,11,12,13]],legend=:false, yaxis=:log,color=:white,bar_width = .9, marker=(0.2, :black, stroke(0)))
+boxplot([reduce(vcat,BB[Ind][1:300]')[:,[1,16,17,18]]],legend=:false, yaxis=:log)
+
+mS0IA0P0=vec(mean(reduce(vcat,BB[Ind][1:300]')[:,[1,16,17,18]],dims=1))
+stdS0IA0P0=vec(std(reduce(vcat,BB[Ind][1:300]')[:,[1,16,17,18]],dims=1))
+mdS0IA0P0=vec(median(reduce(vcat,BB[Ind][1:300]')[:,[1,16,17,18]],dims=1))
+OptIC=[BB[indErr][1], BB[indErr][16] , BB[indErr][17] , BB[indErr][18]]
 
 
 ################### sensitivity
@@ -557,7 +568,7 @@ for j in 1:length(Candidate)
 end
 plboxSen=boxplot(repeat(["μ" "Λ" "μp" "ϕ1" "ϕ2" "β1" "β2" "δ" "ψ" "ω" "σ" "γS" "γA" "ηS" "ηA"],outer=300),Sens, legend=:false, outliers=false,
 	title = "(a) Parameter Sensitivity",titlefont = font(10) , titleloc = :left, color=:white,marker=(0.2, :black, stroke(0)),ylims=(-1, 1))
-plboxR0=boxplot(repeat(["R0"],outer=300),R0, legend=:false, #outliers=false,
+plboxR0=boxplot(repeat(["R0"],outer=300),R0, legend=:false, outliers=false,
 	 title = "(b) Density of R0",titlefont = font(10) , titleloc = :left, color=:white, marker=(0.2, :black, stroke(0)),bar_width = .8, xaxis = ((0, 1), 0:1), yaxis=:log,ylims=(1e-3, 10))
 
 # savefig(PlotSenR0,"PlotSenR0.svg")
@@ -584,7 +595,7 @@ for j in 1:length(Candidate)
 end
 plboxSen0W=boxplot(repeat(["μ" "Λ" "μp" "ϕ1" "ϕ2" "β1" "β2" "δ" "ψ" "ω" "σ" "γS" "γA" "ηS" "ηA"],outer=300),Sens, legend=:false, outliers=false,
 	title = "(c) Parameter Sensitivity",titlefont = font(10) , titleloc = :left, color=:white,marker=(0.2, :black, stroke(0)),ylims=(-1, 1))
-plboxR00W=boxplot(repeat(["R0"],outer=300),R0, legend=:false, #outliers=false,
+plboxR00W=boxplot(repeat(["R0"],outer=300),R0, legend=:false, outliers=false,
 	 title = "(d) Density of R0",titlefont = font(10) , titleloc = :left, color=:white, marker=(0.2, :black, stroke(0)),bar_width = .8, xaxis = ((0, 1), 0:1), yaxis=:log, ylims=(1e-3, 10))
 
 
@@ -649,11 +660,11 @@ end
 end
 
 plboxSenf=boxplot(repeat(["μ" "Λ" "μp" "ϕ1" "ϕ2" "β1" "β2" "δ" "ψ" "ω" "σ" "γS" "γA" "ηS" "ηA"],outer=300),Sensf[:,1:15], legend=:false, outliers=false,
-	title = "(c) Parameter Sensitivity",titlefont = font(10) , titleloc = :left, color=:white,marker=(0.2, :black, stroke(0)),ylims=(-1, 1))
+	title = "(a) Parameter Sensitivity",titlefont = font(10) , titleloc = :left, color=:white,marker=(0.2, :black, stroke(0)),ylims=(-1, 1))
 plboxSenforder=boxplot(repeat(["αS" "αE" "αIA" "αIS" "αR" "αD" "αW"],outer=300),Sensf[:,16:22], legend=:false, outliers=false,ylims=(-15, 10),
-	title = "(d) Order Sensitivity",titlefont = font(10) , titleloc = :left, color=:white,marker=(0.2, :black, stroke(0)))
+	title = "(b) Order Sensitivity",titlefont = font(10) , titleloc = :left, color=:white,marker=(0.2, :black, stroke(0)))
 plboxR0f=boxplot(repeat(["R0"],outer=300),R0f, legend=:false, outliers=false,
-	 title = "(e) Density of R0",titlefont = font(10) , titleloc = :left, color=:white, marker=(0.2, :black, stroke(0)),bar_width = .8, xaxis = ((0, 1), 0:1), yaxis=:log, ylims=(1e-3, 10))
+	 title = "(c) Density of R0",titlefont = font(10) , titleloc = :left, color=:white, marker=(0.2, :black, stroke(0)),bar_width = .8, xaxis = ((0, 1), 0:1), yaxis=:log, ylims=(1e-3, 10))
 
 # without pathogens
 R0f=zeros(length(Candidate))
@@ -674,11 +685,11 @@ for j in 1:length(Candidate)
 	end
 end
 plboxSen0Wf=boxplot(repeat(["μ" "Λ" "μp" "ϕ1" "ϕ2" "β1" "β2" "δ" "ψ" "ω" "σ" "γS" "γA" "ηS" "ηA"],outer=300),Sensf[:,1:15], legend=:false, outliers=false,
-	title = "(c) Parameter Sensitivity",titlefont = font(10) , titleloc = :left, color=:white,marker=(0.2, :black, stroke(0)),ylims=(-1, 1))
+	title = "(d) Parameter Sensitivity",titlefont = font(10) , titleloc = :left, color=:white,marker=(0.2, :black, stroke(0)),ylims=(-1, 1))
 plboxSen0Wforder=boxplot(repeat(["αS" "αE" "αIA" "αIS" "αR" "αD" "αW"],outer=300),Sensf[:,16:22], legend=:false, outliers=false,
-	title = "(d) Order Sensitivity",titlefont = font(10) , titleloc = :left, color=:white,marker=(0.2, :black, stroke(0)),ylims=(-15, 10))
+	title = "(e) Order Sensitivity",titlefont = font(10) , titleloc = :left, color=:white,marker=(0.2, :black, stroke(0)),ylims=(-15, 10))
 plboxR00Wf=boxplot(repeat(["R0"],outer=300),R0f, legend=:false, outliers=false,
-	 title = "(e) Density of R0",titlefont = font(10) , titleloc = :left, color=:white, marker=(0.2, :black, stroke(0)),bar_width = .8, xaxis = ((0, 1), 0:1), yaxis=:log,  ylims=(1e-3, 10))
+	 title = "(f) Density of R0",titlefont = font(10) , titleloc = :left, color=:white, marker=(0.2, :black, stroke(0)),bar_width = .8, xaxis = ((0, 1), 0:1), yaxis=:log,  ylims=(1e-3, 10))
 
 
 L=@layout[b b{0.3w} b{0.2w}; c c{0.3w} c{.2w}]

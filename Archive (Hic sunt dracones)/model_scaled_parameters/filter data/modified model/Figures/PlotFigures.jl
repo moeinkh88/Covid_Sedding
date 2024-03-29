@@ -290,43 +290,183 @@ myshowall(stdout, BB[indErr,:], false)
 
 Err1best=rmsd(TrueD, sol[8,:])
 
-# plots for FDEs
+####################################### plots for FDEs
 
-AAf=readlines("Covid_Shedding/Output_CSC/output_final300plot.txt")
+AAf=readlines("OrderMatrix.txt")
 BBf=map(x -> parse.(Float64, split(x)), AAf)
+Candid=CSV.read("outputODE.csv", DataFrame, header=0)
 
 # Plot c
 
 plot(; legend=false)
 Order=ones(8)
 Errf=zeros(length(BBf))
-for ii in 1:length(BBf)
-	i=Int(BBf[ii][1])
-	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candidate[i][2:15]
-	par= [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T]
-	S0=Candidate[i][1]
-	E0=Candidate[i][17]
-	IA0=Candidate[i][18]
-	P0=Candidate[i][19]
+for i in 1:length(BBf)
+	# i=Int(BBf[ii][1])
+	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candid[i,2:15]
 	
-	N0=S0+E0+IA0+IS0+R0
-	X0=[S0,E0,IA0,IS0,R0,P0,D0,N0]
+	S0=Candid[i,1]
+	E0=Candid[i,16]
+	IA0=Candid[i,17]
+	P0=Candid[i,18]
+	
+	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
 
-	Order[1:5]=BBf[ii][2:6]
+	Order[1:5]=BBf[i][1:5]
 	Order[6]=copy(Order[5])
-	Order[7:8]=BBf[ii][7:8]
+	Order[7:8]=BBf[i][6:7]
+
+	par= [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T,BBf[i]]
 
 	_, x1 = FDEsolver(Ff, [1,length(C)], X0, Order, par, h=.05, nc=4)
 	PredI=x1[1:20:end,4] .+ T.*x1[1:20:end,3]
 	PredR=x1[1:20:end,6]
 	PredD=x1[1:20:end,8]
-	plot!(DateTick2, Pred1; alpha=0.5, color="gray45")
-	Errf[ii]=rmsd([C TrueR TrueD], [PredI PredR PredD])
+	plot!(DateTick2, PredI; alpha=0.5, color="gray45")
+	Errf[i]=rmsd([C TrueR TrueD], [PredI PredR PredD])
 end
 
-#we should get 300 results first, then we can develope the script
+scatter!(C, color=:white, markerstrokewidth=1,xlabel="Date (days)",
+	title = "(b) Fitting fractional order derivatives" , titleloc = :left,titlefont = font(9),ylabel="Daily new confirmed cases (South Africa)" , xrotation=20)
+#plot the best
+valErrf,indErrf=findmin(Errf)
+display(["MinErrf",valErrf])
+
+myshowall(stdout, BBf[indErrf,:], false)
+# i=Int(BBf[indErrf][1])
+μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candid[indErrf,2:15]
+	S0=Candidate[indErrf,1]
+	E0=Candidate[indErrf,16]
+	IA0=Candidate[indErrf,17]
+	P0=Candidate[indErrf,18]
+	
+	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
+	Order[1:5]=BBf[indErrf][1:5]
+	Order[6]=copy(Order[5])
+	Order[7:8]=BBf[indErrf][6:7]
+
+	par= [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T,BBf[indErrf]]
+	_, x1 = FDEsolver(Ff, [1,length(C)], X0, Order, par, h=.05, nc=4)
+	PredI=x1[1:20:end,4] .+ T.*x1[1:20:end,3]
+
+	plot!(DateTick2, PredI; alpha=0.5, color="gray45")
+	plFDE_I=plot!(PredI, lw=1.5, color=:black,formatter=:plain)
+
+Errfbest=rmsd(C, PredI)
+ 
+### plot R
+plot(; legend=false)
+Order=ones(8)
+Errf=zeros(length(BBf))
+for i in 1:length(BBf)
+	# i=Int(BBf[ii][1])
+	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candid[i,2:15]
+	
+	S0=Candid[i,1]
+	E0=Candid[i,16]
+	IA0=Candid[i,17]
+	P0=Candid[i,18]
+	
+	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
+
+	Order[1:5]=BBf[i][1:5]
+	Order[6]=copy(Order[5])
+	Order[7:8]=BBf[i][6:7]
+
+	par= [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T,BBf[i]]
+
+	_, x1 = FDEsolver(Ff, [1,length(C)], X0, Order, par, h=.05, nc=4)
+	PredR=x1[1:20:end,6]
+	plot!(DateTick2, PredR; alpha=0.5, color="gray45")
+end
+
+scatter!(TrueR, color=:white, markerstrokewidth=1,xlabel="Date (days)",
+	title = "(b) Fitting fractional order derivatives" , titleloc = :left,titlefont = font(9),ylabel="Daily new confirmed cases (South Africa)" , xrotation=20)
+#plot the best
+valErrf,indErrf=findmin(Errf)
+display(["MinErrf",valErrf])
+
+myshowall(stdout, BBf[indErrf,:], false)
+# i=Int(BBf[indErrf][1])
+μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candid[indErrf,2:15]
+	S0=Candidate[indErrf,1]
+	E0=Candidate[indErrf,16]
+	IA0=Candidate[indErrf,17]
+	P0=Candidate[indErrf,18]
+	
+	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
+	Order[1:5]=BBf[indErrf][1:5]
+	Order[6]=copy(Order[5])
+	Order[7:8]=BBf[indErrf][6:7]
+
+	par= [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T,BBf[indErrf]]
+	_, x1 = FDEsolver(Ff, [1,length(C)], X0, Order, par, h=.05, nc=4)
+	PredR=x1[1:20:end,6]
+
+	plot!(DateTick2, PredR; alpha=0.5, color="gray45")
+	plFDE_R=plot!(PredR, lw=1.5, color=:black,formatter=:plain)
+
+Errfbest=rmsd(TrueR, PredR)
 
 
+####plot D
+
+plot(; legend=false)
+Order=ones(8)
+Errf=zeros(length(BBf))
+for i in 1:length(BBf)
+	# i=Int(BBf[ii][1])
+	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candid[i,2:15]
+	
+	S0=Candid[i,1]
+	E0=Candid[i,16]
+	IA0=Candid[i,17]
+	P0=Candid[i,18]
+	
+	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
+
+	Order[1:5]=BBf[i][1:5]
+	Order[6]=copy(Order[5])
+	Order[7:8]=BBf[i][6:7]
+
+	par= [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T,BBf[i]]
+
+	_, x1 = FDEsolver(Ff, [1,length(C)], X0, Order, par, h=.05, nc=4)
+	PredD=x1[1:20:end,8]
+	plot!(DateTick2, PredD; alpha=0.5, color="gray45")
+end
+
+scatter!(TrueD, color=:white, markerstrokewidth=1,xlabel="Date (days)",
+	title = "(b) Fitting fractional order derivatives" , titleloc = :left,titlefont = font(9),ylabel="Daily new confirmed cases (South Africa)" , xrotation=20)
+#plot the best
+valErrf,indErrf=findmin(Errf)
+display(["MinErrf",valErrf])
+
+myshowall(stdout, BBf[indErrf,:], false)
+# i=Int(BBf[indErrf][1])
+μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candid[indErrf,2:15]
+	S0=Candidate[indErrf,1]
+	E0=Candidate[indErrf,16]
+	IA0=Candidate[indErrf,17]
+	P0=Candidate[indErrf,18]
+	
+	X0=[S0,E0,IA0,IS0,R0,RT0,P0,D0]
+	Order[1:5]=BBf[indErrf][1:5]
+	Order[6]=copy(Order[5])
+	Order[7:8]=BBf[indErrf][6:7]
+
+	par= [Λ,μ,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T,BBf[indErrf]]
+	_, x1 = FDEsolver(Ff, [1,length(C)], X0, Order, par, h=.05, nc=4)
+	PredD=x1[1:20:end,8]
+
+	plot!(DateTick2, PredD; alpha=0.5, color="gray45")
+	plFDE_D=plot!(PredD, lw=1.5, color=:black,formatter=:plain)
+
+Errfbest=rmsd(TrueD, PredD)
+
+L=@layout[grid(3,2)]
+# L=@layout[grid(1,2) ; _ b{0.82w} _; [b{0.52w} b{0.15w}]]
+Plotall=plot(PlODE_I,PlODE_R,PlODE_D,plFDE_I,plFDE_R,plFDE_D, layout =L,size=(800,600), guidefont=font(8), legendfont=font(8))
 
 
 ################### sensitivity

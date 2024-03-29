@@ -4,6 +4,15 @@ for i in {1..300}; do
 done > OrderMat.txt
 
 
+To convert it in julia:
+FFF=readlines("OrderMat.txt")
+# Convert each string into an array of floats
+       arrays = [parse.(Float64, split(match(r"\[(.*)\]", line).captures[1], ", ")) for line in FFF]
+# Convert the array of arrays into a matrix
+       matrix = reduce(vcat, arrays')
+writedlm("matrix.txt", matrix)
+
+
 
 this is for RMSD but you should remove the extra comma
 

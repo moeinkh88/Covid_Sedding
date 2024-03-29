@@ -149,7 +149,7 @@ myshowall(stdout, BB[indErr,:], false)
 Err1best=rmsd(C, reduce(vcat,sol.u')[:,4])
 
 ##
-AAf=readlines("Covid_Shedding/Output_CSC/output_final300plot.txt")
+AAf=readlines("output_final300plot.txt")
 BBf=map(x -> parse.(Float64, split(x)), AAf)
 
 plot(; legend=false)

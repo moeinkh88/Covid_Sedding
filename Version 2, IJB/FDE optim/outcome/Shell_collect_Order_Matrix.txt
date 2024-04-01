@@ -1,0 +1,29 @@
+for i in {1..300}; do
+    tail -n 7 array_job_out_21004950_$i.txt | awk 'BEGIN {printf "["} {printf (NR==1 ? "" : ", ") $1} END {printf "]"}'
+    echo  # To ensure each vector is on a new line
+done > OrderMat.txt
+
+
+To convert it in julia:
+FFF=readlines("OrderMat.txt")
+# Convert each string into an array of floats
+       arrays = [parse.(Float64, split(match(r"\[(.*)\]", line).captures[1], ", ")) for line in FFF]
+# Convert the array of arrays into a matrix
+       matrix = reduce(vcat, arrays')
+writedlm("matrix.txt", matrix)
+
+
+
+this is for RMSD but you should remove the extra comma
+
+echo -n "RMSD=[" > RMSD_values.txt
+for i in {1..300}; do
+    RMSD=$(grep "RMSD=" array_job_out_21004950_$i.txt | awk -F'=' '{print $2}' | awk '{print $1}')
+    if [ $i -ne 300 ]; then
+        echo -n "$RMSD, " >> RMSD_values.txt
+    else
+        echo -n "$RMSD" >> RMSD_values.txt
+    fi
+done
+echo "]" >> RMSD_values.txt
+

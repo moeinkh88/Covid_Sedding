@@ -278,7 +278,7 @@ plot(; legend=false)
 Order=ones(8)
 Errf=zeros(length(BBf))
 for i in 1:length(BBf)
-	# i=Int(BBf[ii][1])
+	
 	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candid[i,2:15]
 	
 	S0=Candid[i,1]
@@ -309,7 +309,7 @@ valErrf,indErrf=findmin(Errf)
 display(["MinErrf",valErrf])
 
 myshowall(stdout, BBf[indErrf,:], false)
-# i=Int(BBf[indErrf][1])
+
 μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candid[indErrf,2:15]
 	S0=Candid[indErrf,1]
 	E0=Candid[indErrf,16]
@@ -335,7 +335,7 @@ plot(; legend=false)
 Order=ones(8)
 
 for i in 1:length(BBf)
-	# i=Int(BBf[ii][1])
+	
 	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candid[i,2:15]
 	
 	S0=Candid[i,1]
@@ -360,7 +360,7 @@ scatter!(TrueR, color=:white, markerstrokewidth=1,xlabel="Date (days)",
 	title = "(e)" , titleloc = :left,titlefont = font(9),ylabel="Recovered Individuals" , xrotation=20)
 #plot the best
 
-# i=Int(BBf[indErrf][1])
+
 μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candid[indErrf,2:15]
 	S0=Candid[indErrf,1]
 	E0=Candid[indErrf,16]
@@ -388,7 +388,7 @@ plot(; legend=false)
 Order=ones(8)
 
 for i in 1:length(BBf)
-	# i=Int(BBf[ii][1])
+	
 	μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candid[i,2:15]
 	
 	S0=Candid[i,1]
@@ -413,7 +413,7 @@ scatter!(TrueD, color=:white, markerstrokewidth=1,xlabel="Date (days)",
 	title = "(f)" , titleloc = :left,titlefont = font(9),ylabel="Deceased Individuals" , xrotation=20)
 #plot the best
 
-# i=Int(BBf[indErrf][1])
+
 μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA,T = Candid[indErrf,2:15]
 	S0=Candid[indErrf,1]
 	E0=Candid[indErrf,16]
@@ -435,7 +435,7 @@ scatter!(TrueD, color=:white, markerstrokewidth=1,xlabel="Date (days)",
 Errfbest=rmsd(TrueD, PredD)
 
 L=@layout[grid(3,2)]
-# L=@layout[grid(1,2) ; _ b{0.82w} _; [b{0.52w} b{0.15w}]]
+
 Plotall=plot(PlODE_I,plFDE_I,PlODE_R,plFDE_R,PlODE_D,plFDE_D, layout =L,size=(800,600), guidefont=font(8), legendfont=font(8))
 
 ################## plot errors
@@ -451,11 +451,8 @@ median(Errf[sortperm(Errf)][1:300])
 violin(repeat([""],outer=300), Err[Ind][1:300], side = :left,
 	c=:white, label="Model with integer orders", #ylabel="Distribution of RMSD values",
 	title = "Density of RMSD values" ,titlefont = font(13), titleloc = :left,ytickfontsize=11)
-# boxplot!(ones(non300), Err[Ind][1:non300], side = :left, fillalpha=0.75, linewidth=.02)
-# dotplot!(ones(non300), Err[Ind][1:non300], side = :left, marker=(:black, stroke(0)))
+
 	violin!(repeat([""],outer=300), Errf[sortperm(Errf)][1:300], side = :right, c=:white, label="Model with modifyed derivatives", legendposition=(.62,.9))
-	# scatter!([1.], [mean(Err[Ind][1:non300])])
-	# scatter!([1.], [mean(Errf[sortperm(Errf)][1:non300])])
 	annotate!(.3, 1752, text("Integer Order model", :black,:top, 11),legend=false)
 	annotate!(.7, 1752, text("Fractional Order model", :black,:top, 11),legend=false)
 	plot!([0.3;.5], [valErr; valErr], legend=false, c=:black, linestyle=:dash)
@@ -468,7 +465,6 @@ violin(repeat([""],outer=300), Err[Ind][1:300], side = :left,
 		plRMSD=annotate!(.8, valErrf+28, text("Minimum:\n$(round(valErrf,digits=4))", :black,:top, 11))
 
 #######################plot values
-		# boxplot(reduce(vcat,BB[Ind][1:300]')[:,2:14],legend=:false)
 plbox1=boxplot(repeat(["ϕ2" "δ" "ψ" "ω" "ηA"],outer=300),reduce(vcat,BB[Ind][1:300]')[:,[4,7,8,9,14]], legend=:false,
 	title = "(c) parameter values for top 300 fits", titlefont = font(9) , titleloc = :left, color=:white, bar_width = 0.9,marker=(0.2, :black, stroke(0)))
 plbox2=boxplot(repeat(["μp" "ϕ1" "β1" "β2" "σ" "γS" "γA" "ηS"],outer=300),reduce(vcat,BB[Ind][1:300]')[:,[2,3,5,6,10,11,12,13]],legend=:false, yaxis=:log,color=:white,bar_width = .9, marker=(0.2, :black, stroke(0)))
@@ -552,8 +548,6 @@ df=DataFrame(Parameters=parameters, sensitivity=R01, value=par1[1:15])
 
 show(IOContext(stdout, :limit=>false), df)
 
-show("R0=$(rep_num1(par1))")
-Wpbl300=300+250;
 ## sensitivity density
 
 R0=zeros(length(Candidate))
@@ -562,9 +556,8 @@ for j in 1:length(Candidate)
 		μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA = BB[j][2:14]
 
 	par1=[9.468e-3,19.995e-3,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA]
-	# par1 = vcat(par1, [0.9999999999953245, 0.9611344150875429, 0.9999999998709871, 0.8024106717752314, 0.7000000000400238, 0.7144772230212804, 0.9999999998909126])
 	par1 = vcat(par1, ones(7))
-	R0[j]=Wpbl300 .* rep_num1(par1)
+	R0[j]= rep_num1(par1)
 
 
 	for i in 1:15
@@ -579,9 +572,6 @@ plboxSen=boxplot(repeat(["μ" "Λ" "μp" "ϕ1" "ϕ2" "β1" "β2" "δ" "ψ" "ω" 
 plboxR0=boxplot(repeat(["R0"],outer=300),R0, legend=:false, outliers=false,
 	 title = "(b) Density of R0",titlefont = font(10) , titleloc = :left, color=:white, marker=(0.2, :black, stroke(0)),bar_width = .8, xaxis = ((0, 1), 0:1), yaxis=:log,ylims=(1e-3, 10))
 
-# savefig(PlotSenR0,"PlotSenR0.svg")
-
-
 ## R0 without environment pathogens
 
 R0=zeros(length(Candidate))
@@ -591,7 +581,7 @@ for j in 1:length(Candidate)
 	ϕ1,β1,ηS,ηA=zeros(4)
 	par1=[9.468e-3,19.995e-3,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA]
 	par1 = vcat(par1, ones(7))
-	R0[j]=Wpbl300 .* rep_num1(par1)
+	R0[j]=rep_num1(par1)
 
 
 	for i in 1:15
@@ -656,7 +646,7 @@ for j in 1:length(Candidate)
 
 par1f=[9.468e-3,19.995e-3,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA]
 par1f = vcat(par1f, [0.9999999999953245, 0.9611344150875429, 0.9999999998709871, 0.8024106717752314, 0.7000000000400238, 0.7144772230212804, 0.9999999998909126])
-R0f[j]=Wpbl300 .* rep_num1(par1f)
+R0f[j]=rep_num1(par1f)
 
 
 for i in 1:22
@@ -682,7 +672,7 @@ for j in 1:length(Candidate)
 	ϕ1,β1,ηS,ηA=zeros(4)
 	par1f=[9.468e-3,19.995e-3,μp,ϕ1,ϕ2,β1,β2,δ,ψ,ω,σ2,γS,γA,ηS,ηA]
 	par1f = vcat(par1f, [0.9999999999953245, 0.9611344150875429, 0.9999999998709871, 0.8024106717752314, 0.7000000000400238, 0.7144772230212804, 0.9999999998909126])
-	R0f[j]=Wpbl300 .* rep_num1(par1f)
+	R0f[j]=rep_num1(par1f)
 
 
 	for i in 1:22

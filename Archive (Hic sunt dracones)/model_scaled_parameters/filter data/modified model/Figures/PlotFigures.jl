@@ -67,8 +67,8 @@ function  Ff(t, x, par) # for FDE model
     
     return [dS,dE,dIA,dIS,dR,dR1,dP,dD]
     
-end
-
+end 
+  
 # Open the file
 AA=readlines("output1.txt")
 
